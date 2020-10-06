@@ -12,7 +12,7 @@ Ruby 2.6.5 Rails 5.2.4
 - ログイン機能
 - グループ作成機能
 - チャットルーム作成機能
-- 3人以上によるチャット機能
+- 3人以上による非同期チャット機能
 - チャットルームに対するラグ付機能
 - チャットルームの細かな設定機能
 - 議事録をPDFとしてダウンロードする機能
@@ -38,3 +38,10 @@ https://docs.google.com/spreadsheets/d/1aFUOUxszvWOwMY5YiVNOKz-fHvnTdftbogzp-NR0
 - wicked_pdf
 - slim-rails
 - font-awesome-sass
+### 就業タームから選択する技術
+- device
+- AWSへのデプロイ
+### カリキュラム外の技術
+- wicked_pdf
+- slim-rails
+- ransack(優先度:中)
