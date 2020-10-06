@@ -43,7 +43,6 @@ https://docs.google.com/spreadsheets/d/1aFUOUxszvWOwMY5YiVNOKz-fHvnTdftbogzp-NR0
 ### 就業タームから選択する技術
 - メッセージ機能
 - device
-- AWSへのデプロイ
 ### カリキュラム外の技術
 - wicked_pdf
 - slim-rails
