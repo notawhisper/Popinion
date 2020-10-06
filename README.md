@@ -18,7 +18,8 @@ Ruby 2.6.5 Rails 5.2.4
 - 議事録をPDFとしてダウンロードする機能
 - 画像投稿機能
 - 通知機能
-- 外部ログイン機能
+- 外部APIを活用したログイン機能
+- ゲストログイン機能
 
 ### カタログ設計
 https://docs.google.com/spreadsheets/d/1A21Iq1uj5wrTxmmqpuW2rPd1xGXlYxfbR0SLWjbUUHE/edit?usp=sharing
@@ -38,6 +39,7 @@ https://docs.google.com/spreadsheets/d/1aFUOUxszvWOwMY5YiVNOKz-fHvnTdftbogzp-NR0
 - wicked_pdf
 - slim-rails
 - font-awesome-sass
+- devise_token_auth
 ### 就業タームから選択する技術
 - device
 - AWSへのデプロイ
@@ -45,3 +47,4 @@ https://docs.google.com/spreadsheets/d/1aFUOUxszvWOwMY5YiVNOKz-fHvnTdftbogzp-NR0
 - wicked_pdf
 - slim-rails
 - ransack(優先度:中)
+- devise_token_auth(優先度:中)
