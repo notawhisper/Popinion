@@ -12,4 +12,9 @@ html
       = notice
     p.alert
       = alert
+    #開発用ログアウトボタン
+    = link_to "開発用ログアウト", destroy_user_session_path, method: :delete if user_signed_in?
+    #開発用ログイン状態の確認
+    = current_user.name if current_user
+
     = yield
