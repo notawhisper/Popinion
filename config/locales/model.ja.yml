@@ -5,7 +5,9 @@ ja:
     attributes:
       user:
         id: ID
+        name: ユーザーネーム
         email: メールアドレス
+        password: パスワード
   attributes:
     created_at: 作成日
     updated_at: 更新日
