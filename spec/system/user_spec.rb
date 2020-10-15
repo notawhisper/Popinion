@@ -12,6 +12,7 @@ RSpec.describe 'ユーザー機能', type: :system do
         click_on "Sign up"
       end
       it 'ユーザー詳細ページに飛んでいる' do
+        expect(page).to have_content "マイページ"
       end
       it 'ログイン状態になっている' do
       end
