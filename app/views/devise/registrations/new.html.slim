@@ -1,6 +1,6 @@
 h2
   | Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f|
   = render "devise/shared/error_messages", resource: resource
   .field
     = f.label :name
