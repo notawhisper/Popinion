@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_16_135549) do
+ActiveRecord::Schema.define(version: 2020_10_16_144018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "rooms", force: :cascade do |t|
-    t.integer "name", null: false
+    t.string "name", null: false
     t.text "description"
     t.integer "group_id"
     t.boolean "distinguish_speaker", default: false, null: false
