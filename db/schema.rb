@@ -10,28 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_17_073229) do
+ActiveRecord::Schema.define(version: 2020_10_17_121636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "code_numbers", force: :cascade do |t|
+  create_table "chat_members", force: :cascade do |t|
     t.integer "code_number", null: false
     t.bigint "user_id"
     t.bigint "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["room_id"], name: "index_code_numbers_on_room_id"
-    t.index ["user_id"], name: "index_code_numbers_on_user_id"
-  end
-
-  create_table "room_user_lists", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "room_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["room_id"], name: "index_room_user_lists_on_room_id"
-    t.index ["user_id"], name: "index_room_user_lists_on_user_id"
+    t.index ["room_id"], name: "index_chat_members_on_room_id"
+    t.index ["user_id"], name: "index_chat_members_on_user_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -59,9 +50,7 @@ ActiveRecord::Schema.define(version: 2020_10_17_073229) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "code_numbers", "rooms"
-  add_foreign_key "code_numbers", "users"
-  add_foreign_key "room_user_lists", "rooms"
-  add_foreign_key "room_user_lists", "users"
+  add_foreign_key "chat_members", "rooms"
+  add_foreign_key "chat_members", "users"
   add_foreign_key "rooms", "users", column: "host_id"
 end
