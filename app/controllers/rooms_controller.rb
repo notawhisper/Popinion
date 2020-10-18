@@ -10,10 +10,10 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.new(room_params)
-
-    if @room.save
-      redirect_to @room, notice: t('.success')
+    room = Room.new(room_params)
+    if room.save
+      room.invite_member(room.host)
+      redirect_to room, notice: t('.success')
     else
       render :new, notice: t('.failed')
     end
