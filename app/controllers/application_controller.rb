@@ -10,4 +10,10 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     user_path(id: current_user.id)
   end
+
+  def reject_request_from_guest
+    unless current_user == @room.host
+      redirect_to @room, notice: "権限がありません"
+    end
+  end
 end
