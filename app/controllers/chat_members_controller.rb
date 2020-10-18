@@ -13,7 +13,10 @@ class ChatMembersController < ApplicationController
   end
 
   def destroy
-
+    room = find_room(params[:room_id])
+    target_user = User.find(params[:id])
+    room.chat_memberships.find_by(user_id: target_user.id).destroy
+    redirect_to room
   end
 
   private

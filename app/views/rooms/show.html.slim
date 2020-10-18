@@ -10,4 +10,5 @@ br
 
 - @chat_members.each do |member|
   = member.email
+  = link_to "delete", room_chat_member_path(@room, member), method: :delete
   br
