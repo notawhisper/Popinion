@@ -14,18 +14,16 @@ class Room < ApplicationRecord
   def assign_code_number
     self.nullify_code_numbers
     max_number = self.chat_members.size
-    current_code_numbers = self.chat_memberships.pluck(:code_number)
 
     self.chat_members.each do |user|
       if user == self.host
         self.chat_memberships.find_by(user_id: user.id).update_attribute(:code_number, 1)
       else
-        possible_numbers = (2..max_number).to_a - current_code_numbers
+        possible_numbers = (2..max_number).to_a - self.chat_memberships.pluck(:code_number)
         code_number = possible_numbers.sample
         self.chat_memberships.find_by(user_id: user.id).update_attribute(:code_number, code_number)
       end
     end
-
-    self.chat_memberships
+    self.chat_memberships.pluck(:code_number)
   end
 end
