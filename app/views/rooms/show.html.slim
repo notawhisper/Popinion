@@ -14,11 +14,15 @@ br
   = link_to "delete", room_chat_member_path(@room, member), method: :delete if current_user == @room.host
   br
 
+= render partial: 'posts/index'
 
-- @room.posts.each do |post|
-  = post.content
-  br
+/ - @room.posts.each do |post|
+/   = post.content
+/   br
 
 = form_with scope: :post, url: room_posts_path(@room), local: true do |f|
   = f.text_area :content
   = f.submit
+
+= link_to "download", pdf_download_room_path(@room) if (current_user == @room.host) || @room.let_guests_view_all == true
+
