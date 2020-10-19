@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:edit, :update, :show, :destroy]
+  before_action :set_room, only: [:edit, :update, :show, :destroy, :download]
   before_action :authenticate_user!
 
   def index
@@ -31,12 +31,25 @@ class RoomsController < ApplicationController
   end
 
   def show
-    # @chat_members = @room.chat_members
   end
 
   def destroy
     if @room.destroy
       redirect_to rooms_path, notice: t('.success')
+    end
+  end
+
+  def download
+    respond_to do |format|
+      # format.html
+      format.pdf do
+        render pdf: "pdf_download_#{@room.name}",
+               encording: 'UTF-8',
+               layout: 'layouts/pdf.html.slim',
+               template: "posts/_index.html.slim",
+               header: {
+                          center: "#{@room.name}\n#{@room.description}"}
+      end
     end
   end
 
