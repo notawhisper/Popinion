@@ -2,12 +2,20 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      room: チャットルーム
     attributes:
       user:
         id: ID
         name: ユーザーネーム
         email: メールアドレス
         password: パスワード
+      room:
+        name: ルーム名
+        description: 議題•備考
+        distinguish_speaker: 投稿者を区別する
+        let_guests_view_all: ホスト以外でも全投稿を閲覧できる
+        show_member_list: ホスト以外でもメンバーリストを閲覧できる
+
   attributes:
     created_at: 作成日
     updated_at: 更新日

@@ -1,0 +1,13 @@
+ja:
+  rooms:
+    show:
+      title:
+    create:
+      success: 'チャットルームを作成しました'
+      failed: 'チャットルームの作成に失敗しました'
+    update:
+      success: 'チャットルーム設定を更新しました'
+      failed: 'チャットルーム設定の更新に失敗しました'
+    destroy:
+      success: 'チャットルームを削除しました'
+      failed: 'チャットルームの削除に失敗しました'
