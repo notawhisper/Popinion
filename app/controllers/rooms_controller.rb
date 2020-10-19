@@ -31,7 +31,7 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @chat_members = @room.chat_members
+    # @chat_members = @room.chat_members
   end
 
   def destroy
