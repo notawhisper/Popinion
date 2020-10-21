@@ -16,7 +16,6 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
 
     if @room.save
-      # @room.invite_chat_member(@room.host)
       invite_group_members_to_room
       redirect_to @room, notice: t('.success')
     else

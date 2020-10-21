@@ -1,8 +1,9 @@
 class Room < ApplicationRecord
   belongs_to :host, class_name: "User"
+  belongs_to :group
   has_many :chat_memberships, class_name: "ChatMember", dependent: :destroy
   has_many :chat_members, through: :chat_memberships, source: :user
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
   def invite_chat_member(user)
     self.chat_memberships.create(user: user)

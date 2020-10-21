@@ -1,7 +1,9 @@
 h1 Rooms#show
 
+=
 = @room.name
 br
+
 = @room.description
 
 = form_with url: room_chat_members_path(@room), local: true do |f|
