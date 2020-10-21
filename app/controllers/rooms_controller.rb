@@ -12,7 +12,7 @@ class RoomsController < ApplicationController
   def create
     room = Room.new(room_params)
     if room.save
-      room.invite_member(room.host)
+      room.invite_chat_member(room.host)
       redirect_to room, notice: t('.success')
     else
       render :new, notice: t('.failed')

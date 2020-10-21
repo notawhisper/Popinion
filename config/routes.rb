@@ -9,5 +9,7 @@ Rails.application.routes.draw do
     resources :chat_members, only: %w(create destroy)
     resources :posts, only: %w(create)
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :groups do
+    resources :members, only: %w(create destroy), controller: 'group_members'
+  end
 end

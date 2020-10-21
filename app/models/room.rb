@@ -4,7 +4,7 @@ class Room < ApplicationRecord
   has_many :chat_members, through: :chat_memberships, source: :user
   has_many :posts
 
-  def invite_member(user)
+  def invite_chat_member(user)
     self.chat_memberships.create(user: user)
   end
 

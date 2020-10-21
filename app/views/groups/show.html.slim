@@ -1,0 +1,7 @@
+= @group.name
+= @group.description
+
+= render partial: 'group_members/form'
+
+= render partial: 'group_members/index', locals: { group: @group }
+
