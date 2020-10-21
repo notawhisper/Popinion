@@ -2,6 +2,7 @@
   | チャットルーム一覧
 
 - group.rooms.each do |room|
-  = room.host
+  = room.name
+  = room.host.name
   = room.chat_members.size
-  = link_to room_path(room), method: :delete
+  = link_to "delete", room_path(room), method: :delete

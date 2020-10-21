@@ -11,4 +11,6 @@ h1 Rooms#new
   = f.label :show_member_list
   = f.check_box :show_member_list, { checked: true }, true, false
   = f.hidden_field :host_id
+  = hidden_field_tag :from_group_show_page, true if @room.group_id
+  = f.hidden_field :group_id
   = f.submit
