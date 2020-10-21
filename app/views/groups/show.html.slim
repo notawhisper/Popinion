@@ -1,0 +1,10 @@
+= @group.name
+= @group.description
+
+= render partial: 'rooms/index', locals: { group: @group }
+
+= render partial: 'group_members/form'
+
+= render partial: 'group_members/index', locals: { group: @group }
+
+= link_to "グループメンバーでルームを作成", new_room_path(from_group_show_page: true, room: { group_id: @group.id })

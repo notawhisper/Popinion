@@ -1,0 +1,8 @@
+.p
+  | チャットルーム一覧
+
+- group.rooms.each do |room|
+  = room.name
+  = room.host.name
+  = room.chat_members.size
+  = link_to "delete", room_path(room), method: :delete

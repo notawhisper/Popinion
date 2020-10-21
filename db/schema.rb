@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_18_091439) do
+ActiveRecord::Schema.define(version: 2020_10_19_092250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,24 @@ ActiveRecord::Schema.define(version: 2020_10_18_091439) do
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_chat_members_on_room_id"
     t.index ["user_id"], name: "index_chat_members_on_user_id"
+  end
+
+  create_table "group_members", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_group_members_on_group_id"
+    t.index ["user_id"], name: "index_group_members_on_user_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_groups_on_owner_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -62,6 +80,9 @@ ActiveRecord::Schema.define(version: 2020_10_18_091439) do
 
   add_foreign_key "chat_members", "rooms"
   add_foreign_key "chat_members", "users"
+  add_foreign_key "group_members", "groups"
+  add_foreign_key "group_members", "users"
+  add_foreign_key "groups", "users", column: "owner_id"
   add_foreign_key "posts", "rooms"
   add_foreign_key "posts", "users"
   add_foreign_key "rooms", "users", column: "host_id"

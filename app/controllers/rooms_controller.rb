@@ -7,13 +7,17 @@ class RoomsController < ApplicationController
 
   def new
     @room = current_user.host_rooms.build
+    if params[:from_group_show_page]
+      @room.group_id = params[:room][:group_id]
+    end
   end
 
   def create
-    room = Room.new(room_params)
-    if room.save
-      room.invite_member(room.host)
-      redirect_to room, notice: t('.success')
+    @room = Room.new(room_params)
+
+    if @room.save
+      invite_group_members_to_room
+      redirect_to @room, notice: t('.success')
     else
       render :new, notice: t('.failed')
     end
@@ -60,6 +64,21 @@ class RoomsController < ApplicationController
 
   def room_params
     params.require(:room).permit(:name, :description, :group_id, :distinguish_speaker,
-                                 :let_guests_view_all, :show_member_list, :host_id)
+                                 :let_guests_view_all, :show_member_list, :host_id, :from_group_show_page)
+  end
+
+  def find_group
+    @group = Group.find(params[:room][:group_id])
+  end
+
+  def invite_group_members_to_room
+    if params[:from_group_show_page]
+      find_group
+      @group.group_members.each do |member|
+        @room.invite_chat_member(member)
+      end
+    else
+      @room.invite_chat_member(@room.host)
+    end
   end
 end
