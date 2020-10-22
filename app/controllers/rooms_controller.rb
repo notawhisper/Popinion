@@ -1,6 +1,7 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:edit, :update, :show, :destroy, :download]
   before_action :authenticate_user!
+  before_action :check_download_permission, only: :download
 
   def index
   end
@@ -79,6 +80,12 @@ class RoomsController < ApplicationController
       end
     else
       @room.invite_chat_member(@room.host)
+    end
+  end
+
+  def check_download_permission
+    unless @room.let_guests_view_all_true? || ( current_user == @room.host)
+      redirect_to @room, notice: "権限がありません"
     end
   end
 end

@@ -28,5 +28,5 @@ br
   = f.text_area :content
   = f.submit
 
-= link_to "download", pdf_download_room_path(@room) if (current_user == @room.host) || @room.let_guests_view_all == true
+= link_to "download", pdf_download_room_path(@room) if (current_user == @room.host) || @room.let_guests_view_all_true?
 

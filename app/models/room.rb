@@ -6,7 +6,7 @@ class Room < ApplicationRecord
   has_many :posts, dependent: :destroy
 
   enum distinguish_speaker: { true: true, false: false }, _prefix: true
-  enum let_members_view_all: { true: true, false: false }, _prefix: true
+  enum let_guests_view_all: { true: true, false: false }, _prefix: true
   enum show_member_list: { true: true, false: false }, _prefix: true
 
   def invite_chat_member(user)
