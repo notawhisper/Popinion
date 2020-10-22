@@ -13,14 +13,7 @@ class User < ApplicationRecord
   has_many :group_memberships, class_name: "GroupMember", dependent: :destroy
   has_many :groups, through: :group_memberships, source: :group
 
-  # def assign_code_number(room)
-  #   if self == room.host
-  #     code_number = 1
-  #   else
-  #     possible_number = [2..room.users.size] | room.chat_members.pluck(:code_number)
-  #     code_number = possible_number.sample
-  #   end
-  #
-  #   self.chat_members.create(room: room, code_number: code_number)
-  # end
+  def current_code_number(room)
+    self.chat_memberships.find_by(room_id: room.id).code_number
+  end
 end

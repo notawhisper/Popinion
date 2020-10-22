@@ -18,7 +18,7 @@ class Room < ApplicationRecord
   end
 
   def assign_code_number
-    self.nullify_code_numbers
+    # self.nullify_code_numbers
     max_number = self.chat_members.size
 
     self.chat_members.each do |user|
@@ -30,6 +30,6 @@ class Room < ApplicationRecord
         self.chat_memberships.find_by(user_id: user.id).update_attribute(:code_number, code_number)
       end
     end
-    self.chat_memberships
+    # self.chat_memberships
   end
 end

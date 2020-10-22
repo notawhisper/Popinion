@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:edit, :update, :show, :destroy, :download]
+  before_action :set_room, only: [:edit, :update, :show, :destroy, :download, :set_code_numbers]
   before_action :authenticate_user!
   before_action :check_download_permission, only: :download
 
@@ -57,6 +57,20 @@ class RoomsController < ApplicationController
                           center: "#{@room.name}\n#{@room.description}"}
       end
     end
+  end
+
+  def set_code_numbers
+
+    unless @room.nullify_code_numbers
+      render :show, notice: t('.failed')
+    end
+
+    if @room.assign_code_number
+      redirect_to @room, notice: t('.success')
+    else
+      render :show, notice: t('.failed')
+    end
+
   end
 
   private
