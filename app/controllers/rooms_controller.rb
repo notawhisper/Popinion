@@ -36,6 +36,7 @@ class RoomsController < ApplicationController
   end
 
   def show
+    set_restricted_posts unless @room.let_guests_view_all_true?
   end
 
   def destroy
@@ -87,5 +88,17 @@ class RoomsController < ApplicationController
     unless @room.let_guests_view_all_true? || ( current_user == @room.host)
       redirect_to @room, notice: "権限がありません"
     end
+  end
+
+  def get_own_posts
+    @room.posts.find_by(user_id: current_user.id)
+  end
+
+  def get_posts_by_host
+    @room.posts.find_by(user_id: @room.host.id)
+  end
+
+  def set_restricted_posts
+    @restricted_posts = [get_posts_by_host, get_own_posts].flatten
   end
 end

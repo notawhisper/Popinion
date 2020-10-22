@@ -18,11 +18,12 @@ br
   = link_to "delete", room_chat_member_path(@room, member), method: :delete if current_user == @room.host
   br
 
-= render partial: 'posts/index'
+- if @room.let_guests_view_all_true?
+  = render partial: 'posts/index'
+- else
+  = render partial: 'posts/restricted_index', locals: { restricted_posts: @restricted_posts }
 
-/ - @room.posts.each do |post|
-/   = post.content
-/   br
+
 
 = form_with scope: :post, url: room_posts_path(@room), local: true do |f|
   = f.text_area :content
