@@ -1,6 +1,6 @@
 class Room < ApplicationRecord
   belongs_to :host, class_name: "User"
-  belongs_to :group
+  belongs_to :group, optional: true
   has_many :chat_memberships, class_name: "ChatMember", dependent: :destroy
   has_many :chat_members, through: :chat_memberships, source: :user
   has_many :posts, dependent: :destroy
