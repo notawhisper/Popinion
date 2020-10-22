@@ -2,7 +2,7 @@ class ChatMembersController < ApplicationController
   before_action :user_exist?, only: [:create]
   before_action :find_room
   before_action :reject_request_from_guest
-  before_action :is_target_user_already_member?, only: [:create]
+  before_action :existing_member_cannot_be_added, only: [:create]
 
   def create
     target_user = User.find_by(email: params[:email])
@@ -12,11 +12,12 @@ class ChatMembersController < ApplicationController
       render template: "rooms/show", notice: "無効なアドレスです"
     end
   end
-  -ーを
+
   def destroy
     target_user = User.find(params[:id])
-    @room.chat_memberships.find_by(user_id: target_user.id).destroy
-    redirect_to @room
+    unless is_target_user_host?(target_user)
+      redirect_to @room, notice: 'success' if @room.chat_memberships.find_by(user_id: target_user.id).destroy
+    end
   end
 
   private
@@ -30,9 +31,17 @@ class ChatMembersController < ApplicationController
     end
   end
 
-  def is_target_user_already_member?
+  def existing_member_cannot_be_added
     if @room.chat_members.exists?(email: params[:email])
       redirect_to @room, notice: "すでにメンバーです"
+    end
+  end
+
+  def is_target_user_host?(target_user)
+    if target_user == @room.host
+      redirect_to @room, notice: "ホストは削除できません"
+    else
+      false
     end
   end
 end
