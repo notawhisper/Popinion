@@ -6,13 +6,13 @@ class ChatMembersController < ApplicationController
 
   def create
     target_user = User.find_by(email: params[:email])
-    if @room.invite_member(target_user)
+    if @room.invite_chat_member(target_user)
       redirect_to @room
     else
       render template: "rooms/show", notice: "無効なアドレスです"
     end
   end
-
+  -ーを
   def destroy
     target_user = User.find(params[:id])
     @room.chat_memberships.find_by(user_id: target_user.id).destroy
