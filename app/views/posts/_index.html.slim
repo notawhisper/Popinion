@@ -5,7 +5,6 @@
 
 - @room.posts.each do |post|
   p
-    = post.user.current_code_number(@room)
-    = ': '
+    = "#{post.user.current_code_number(@room)}: " if @room.distinguish_speaker_true?
     = post.content
 br
