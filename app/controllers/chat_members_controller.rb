@@ -1,10 +1,9 @@
 class ChatMembersController < ApplicationController
+  before_action :authenticate_user!
   before_action :user_exist?, only: [:create]
   before_action :find_room
   before_action :reject_request_from_guest
   before_action :existing_member_cannot_be_added, only: [:create]
-
-
 
   def create
     target_user = User.find_by(email: params[:email])

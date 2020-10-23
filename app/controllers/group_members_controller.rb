@@ -1,4 +1,5 @@
 class GroupMembersController < ApplicationController
+  before_action :authenticate_user!
   before_action :user_exist?, only: [:create]
   before_action :find_group
   before_action :reject_request_from_guest
