@@ -1,5 +1,5 @@
 class TopController < ApplicationController
-  layout 'top_index'
+  layout 'without_header'
   def index
   end
 end

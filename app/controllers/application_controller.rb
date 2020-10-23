@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  layout :choose_layout
 
   protected
 
@@ -16,6 +17,14 @@ class ApplicationController < ActionController::Base
       redirect_to @room, notice: "権限がありません"
     elsif @group && (current_user != @group.owner)
       redirect_to @group, notice: "権限がありません"
+    end
+  end
+
+  def choose_layout
+    if devise_controller?
+      "without_header"
+    else
+      "application"
     end
   end
 end
