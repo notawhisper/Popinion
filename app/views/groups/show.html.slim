@@ -3,7 +3,7 @@ p
 p
   = "詳細: #{@group.description}"
 
-= link_to "edit", edit_group_path(@group)
+= link_to "edit", edit_group_path(@group) if current_user == @group.owner
 
 = render partial: 'rooms/list_for_group', locals: { group: @group }
 br
