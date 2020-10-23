@@ -5,7 +5,7 @@ class Room < ApplicationRecord
   has_many :chat_members, through: :chat_memberships, source: :user
   has_many :posts, dependent: :destroy
 
-  validates :name, presence: true, length: { in: 1..20 }
+  validates :name, presence: true, length: { in: 1..30 }
   validates :description, length: { in: 0..200 }
   validates :distinguish_speaker, inclusion: { in: ["true", "false"] }
   validates :let_guests_view_all, inclusion: { in: ["true", "false"] }

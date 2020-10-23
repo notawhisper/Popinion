@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :name, presence: true, length: { in: 1..20 }
+  validates :name, presence: true, length: { in: 1..30 }
 
   has_many :host_rooms, class_name: "Room", foreign_key: "host_id", dependent: :destroy
   has_many :chat_memberships, class_name: "ChatMember", dependent: :destroy
