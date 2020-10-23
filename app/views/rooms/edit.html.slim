@@ -1,14 +1,1 @@
-h1 Rooms#edit
-= form_with model: @room, local: true do |f|
-  = f.label :name
-  = f.text_field :name
-  = f.label :description
-  = f.text_area :description
-  = f.label :distinguish_speaker
-  = f.check_box :distinguish_speaker, {}, "true", "false"
-  = f.label :let_guests_view_all
-  = f.check_box :let_guests_view_all, {}, "true", "false"
-  = f.label :show_member_list
-  = f.check_box :show_member_list, {}, "true", "false"
-  = f.hidden_field :host_id
-  = f.submit
+= render partial: 'rooms/form', locals: { room: @room }

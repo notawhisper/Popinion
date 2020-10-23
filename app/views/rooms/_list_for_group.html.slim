@@ -1,9 +1,13 @@
-.p
+h3
   | チャットルーム一覧
 
-- group.rooms.each do |room|
-  = room.name
-  = room.host.name
-  = room.chat_members.size
-  = link_to "delete", room_path(room), method: :delete
-  br
+- if group.rooms.any?
+  - group.rooms.each do |room|
+    = room.name
+    = room.host.name
+    = room.chat_members.size
+    = link_to "delete", room_path(room), method: :delete
+    br
+- else
+  p
+    | 現在グループ内にチャットルームはありません

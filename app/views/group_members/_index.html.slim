@@ -2,3 +2,4 @@
   = member.name
   = member.email if current_user == group.owner
   = link_to "delete", group_member_path(group, member), method: :delete if current_user == group.owner && member != group.owner
+  br
