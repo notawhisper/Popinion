@@ -16,8 +16,10 @@ class GroupMembersController < ApplicationController
 
   def destroy
     target_user = User.find(params[:id])
-    @group.group_memberships.find_by(user_id: target_user.id).destroy
-    redirect_to @group
+    unless is_target_user_owner?(target_user)
+      @group.group_memberships.find_by(user_id: target_user.id).destroy
+      redirect_to @group
+    end
   end
 
   private
@@ -34,6 +36,14 @@ class GroupMembersController < ApplicationController
   def is_target_user_already_member?
     if @group.group_members.exists?(email: params[:email])
       redirect_to @group, notice: "すでにメンバーです"
+    end
+  end
+
+  def is_target_user_owner?(target_user)
+    if target_user == @group.owner
+      redirect_to @group, notice: "オーナーは削除できません"
+    else
+      false
     end
   end
 end
