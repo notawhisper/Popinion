@@ -1,10 +1,14 @@
-= @group.name
-= @group.description
+p
+  = "グループ名: #{@group.name}"
+p
+  = "詳細: #{@group.description}"
 
-= render partial: 'rooms/index', locals: { group: @group }
+= link_to "edit", edit_group_path(@group) if current_user == @group.owner
 
-= render partial: 'group_members/form'
-
+= render partial: 'rooms/list_for_group', locals: { group: @group }
+br
+= render partial: 'group_members/form' if current_user == @group.owner
+br
 = render partial: 'group_members/index', locals: { group: @group }
-
+br
 = link_to "グループメンバーでルームを作成", new_room_path(from_group_show_page: true, room: { group_id: @group.id })

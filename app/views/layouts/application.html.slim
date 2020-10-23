@@ -8,13 +8,21 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
+    header
+      h2
+        | POPINION
+      = link_to "チャットルーム作成", new_room_path
+      = link_to "グループ作成", new_group_path
+      = link_to "マイページ", user_path(current_user)
+      = link_to "ログアウト", destroy_user_session_path, method: :delete if user_signed_in?
+
     p.notice
       = notice
     p.alert
       = alert
-    #開発用ログアウトボタン
-    = link_to "開発用ログアウト", destroy_user_session_path, method: :delete if user_signed_in?
-    #開発用ログイン状態の確認
+
+    / [開発用]ログイン状態の確認
     = current_user.name if current_user
+    | でログイン中
 
     = yield

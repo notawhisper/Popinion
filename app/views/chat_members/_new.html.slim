@@ -1,0 +1,6 @@
+- if current_user == room.host
+  h4
+    | emailでチャットメンバーを招待する
+  = form_with url: room_chat_members_path(room), local: true do |f|
+    = f.email_field :email
+    = f.submit

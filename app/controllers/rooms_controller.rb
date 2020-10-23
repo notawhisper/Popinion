@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:edit, :update, :show, :destroy, :download, :set_code_numbers]
   before_action :authenticate_user!
+  before_action :set_room, only: [:edit, :update, :show, :destroy, :download, :set_code_numbers]
   before_action :check_download_permission, only: :download
 
   def index
@@ -41,7 +41,9 @@ class RoomsController < ApplicationController
 
   def destroy
     if @room.destroy
-      redirect_to rooms_path, notice: t('.success')
+      redirect_to user_path(current_user), notice: t('.success')
+    else
+      redirect_to @room,  notice: t('.failed')
     end
   end
 
