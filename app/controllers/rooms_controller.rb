@@ -41,7 +41,9 @@ class RoomsController < ApplicationController
 
   def destroy
     if @room.destroy
-      redirect_to rooms_path, notice: t('.success')
+      redirect_to user_path(current_user), notice: t('.success')
+    else
+      redirect_to @room,  notice: t('.failed')
     end
   end
 
