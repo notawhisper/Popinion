@@ -1,6 +1,7 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:edit, :update, :show, :destroy, :download]
+  before_action :set_room, only: [:edit, :update, :show, :destroy, :download, :set_code_numbers]
   before_action :authenticate_user!
+  before_action :check_download_permission, only: :download
 
   def index
   end
@@ -35,6 +36,7 @@ class RoomsController < ApplicationController
   end
 
   def show
+    set_restricted_posts unless @room.let_guests_view_all_true?
   end
 
   def destroy
@@ -55,6 +57,20 @@ class RoomsController < ApplicationController
                           center: "#{@room.name}\n#{@room.description}"}
       end
     end
+  end
+
+  def set_code_numbers
+
+    unless @room.nullify_code_numbers
+      render :show, notice: t('.failed')
+    end
+
+    if @room.assign_code_number
+      redirect_to @room, notice: t('.success')
+    else
+      render :show, notice: t('.failed')
+    end
+
   end
 
   private
@@ -80,5 +96,23 @@ class RoomsController < ApplicationController
     else
       @room.invite_chat_member(@room.host)
     end
+  end
+
+  def check_download_permission
+    unless @room.let_guests_view_all_true? || ( current_user == @room.host)
+      redirect_to @room, notice: "権限がありません"
+    end
+  end
+
+  def get_own_posts
+    @room.posts.find_by(user_id: current_user.id)
+  end
+
+  def get_posts_by_host
+    @room.posts.find_by(user_id: @room.host.id)
+  end
+
+  def set_restricted_posts
+    @restricted_posts = [get_posts_by_host, get_own_posts].flatten
   end
 end

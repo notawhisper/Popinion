@@ -1,3 +1,10 @@
+/ pdfダウンロード機能のためにインスタンス変数を使用する必要がある？
+/ （ローカル変数を用いるとpdfダウンロード時に値がnilとなり、エラーが出る）
+
+/ このままだとpostの数だけクエリが走ってしまう。要改善。
+
 - @room.posts.each do |post|
-  = post.content
+  p
+    = "#{post.user.current_code_number(@room)}: " if @room.distinguish_speaker_true?
+    = post.content
 br

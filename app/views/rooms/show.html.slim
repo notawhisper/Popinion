@@ -1,30 +1,34 @@
 h1 Rooms#show
 
-=
 = @room.name
 br
 
 = @room.description
+
+br
+= link_to "edit", edit_room_path(@room)
 
 = form_with url: room_chat_members_path(@room), local: true do |f|
   = f.email_field :email
   = f.submit
 
 - @room.chat_members.each do |member|
-  = member.name if (current_user == @room.host) || (@room.show_member_list == true)
+  = member.name if (current_user == @room.host) || (@room.show_member_list == "true")
   = member.email if current_user == @room.host
-  = link_to "delete", room_chat_member_path(@room, member), method: :delete if current_user == @room.host
+  = link_to "delete", room_chat_member_path(@room, member), method: :delete if current_user == @room.host && member != @room.host
   br
 
-= render partial: 'posts/index'
+- if @room.let_guests_view_all_true? || current_user == @room.host
+  = render partial: 'posts/index'
+- else
+  = render partial: 'posts/restricted_index', locals: { restricted_posts: @restricted_posts }
 
-/ - @room.posts.each do |post|
-/   = post.content
-/   br
+
 
 = form_with scope: :post, url: room_posts_path(@room), local: true do |f|
   = f.text_area :content
   = f.submit
 
-= link_to "download", pdf_download_room_path(@room) if (current_user == @room.host) || @room.let_guests_view_all == true
+= link_to "download", pdf_download_room_path(@room) if (current_user == @room.host) || @room.let_guests_view_all_true?
 
+= link_to "assign_code_number", assign_code_number_room_path(@room) if (current_user == @room.host)
