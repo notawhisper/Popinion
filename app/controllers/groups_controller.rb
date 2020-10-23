@@ -28,6 +28,11 @@ class GroupsController < ApplicationController
   end
 
   def update
+    if @group.update(group_params)
+      redirect_to @group, notice: "更新しました"
+    else
+      render :edit, notice: "更新できませんでした"
+    end
   end
 
   def destroy

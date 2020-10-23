@@ -3,6 +3,8 @@ p
 p
   = "詳細: #{@group.description}"
 
+= link_to "edit", edit_group_path(@group)
+
 = render partial: 'rooms/list_for_group', locals: { group: @group }
 br
 = render partial: 'group_members/form'
