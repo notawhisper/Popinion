@@ -7,7 +7,7 @@ p
 
 = render partial: 'rooms/list_for_group', locals: { group: @group }
 br
-= render partial: 'group_members/form'
+= render partial: 'group_members/form' if current_user == @group.owner
 br
 = render partial: 'group_members/index', locals: { group: @group }
 br

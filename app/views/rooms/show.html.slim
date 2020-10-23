@@ -8,7 +8,7 @@ br
 = link_to "設定編集", edit_room_path(@room)
 
 
-= render partial: 'chat_members/new', locals: { room: @room }
+= render partial: 'chat_members/new', locals: { room: @room } if current_user == @room.host
 
 = render partial: 'chat_members/index', locals: { room: @room }
 br
