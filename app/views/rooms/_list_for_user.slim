@@ -1,0 +1,11 @@
+h2
+  | チャットルーム一覧
+- if my_rooms.any?
+  - my_rooms.each do |room|
+    = link_to "#{room.name}", room_path(room)
+    = room.host.name
+    = room.chat_members.size
+    = link_to "delete", room_path(room), method: :delete
+    br
+-else
+  | チャットルームにまだ参加していません

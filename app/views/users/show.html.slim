@@ -4,3 +4,7 @@ p
   = @user.name
 p
   = @user.email
+
+= render partial: 'groups/index', locals: { my_groups: @user.groups }
+
+= render partial: 'rooms/list_for_user', locals: { my_rooms: @user.rooms }
