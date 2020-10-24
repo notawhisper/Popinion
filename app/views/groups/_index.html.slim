@@ -1,9 +1,10 @@
 h3
-  | グループ一覧
+  = t('.title')
 
 - if my_groups.any?
   - my_groups.each do |group|
     = link_to "#{group.name}", group_path(group)
+    = link_to t('.delete'), group_path(group), method: :delete
     br
 - else
-  | 所属グループはまだありません
+  = t('.no_groups')

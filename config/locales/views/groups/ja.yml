@@ -1,0 +1,23 @@
+ja:
+  groups:
+    index:
+      title: 所属グループ一覧
+      delete: 削除
+      no_groups: まだグループに所属していません
+    show:
+      edit: グループ設定を編集
+      create_room_with_group_members: グループメンバーでルームを作成
+      delete: このグループを削除
+    create:
+      success: グループを作成しました
+      failed: グループの作成に失敗しました
+    update:
+      success: グループ情報を更新しました
+      failed: グループ情報の更新に失敗しました
+    destroy:
+      success: グループを削除しました
+      failed: グループの削除に失敗しました
+    submit:
+      create: 作成
+      update: 更新
+

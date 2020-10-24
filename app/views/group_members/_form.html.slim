@@ -1,5 +1,3 @@
-h3
-  | emailでグループメンバーを招待
 = form_with url: group_members_path(@group), local: true do |f|
-  = f.email_field :email
-  = f.submit
+  = f.email_field :email, placeholder: t('.title')
+  = f.submit t('.invite')

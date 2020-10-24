@@ -1,0 +1,8 @@
+ja:
+  layouts:
+    application:
+      title: POPINION
+      create_room: チャットルームを作成
+      create_group: グループを作成
+      my_page: マイページ
+      sign_out: ログアウト

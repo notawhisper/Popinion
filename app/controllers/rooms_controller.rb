@@ -49,7 +49,6 @@ class RoomsController < ApplicationController
 
   def download
     respond_to do |format|
-      # format.html
       format.pdf do
         render pdf: "pdf_download_#{@room.name}",
                encording: 'UTF-8',
@@ -62,7 +61,6 @@ class RoomsController < ApplicationController
   end
 
   def set_code_numbers
-
     unless @room.nullify_code_numbers
       render :show, notice: t('.failed')
     end
@@ -72,7 +70,6 @@ class RoomsController < ApplicationController
     else
       render :show, notice: t('.failed')
     end
-
   end
 
   private

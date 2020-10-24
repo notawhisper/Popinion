@@ -1,5 +1,5 @@
 h3
-  | チャットルーム一覧
+  = t('.title')
 
 - if group.rooms.any?
   - group.rooms.each do |room|
@@ -10,4 +10,4 @@ h3
     br
 - else
   p
-    | 現在グループ内にチャットルームはありません
+    = t('.no_chat_room')

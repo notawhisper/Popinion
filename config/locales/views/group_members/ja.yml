@@ -1,0 +1,8 @@
+ja:
+  group_members:
+    form:
+      title: アカウントのemail
+      invite: 招待
+    index:
+      title: グループメンバー
+      delete: 削除

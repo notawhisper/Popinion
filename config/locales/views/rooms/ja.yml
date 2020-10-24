@@ -1,13 +1,27 @@
 ja:
   rooms:
     show:
-      title:
+      edit: 設定編集
+      delete: 削除
+      download: これまでの投稿をPDFダウンロード
+      assign_code_number: メンバーにコードナンバーを割り振る
     create:
-      success: 'チャットルームを作成しました'
-      failed: 'チャットルームの作成に失敗しました'
+      success: チャットルームを作成しました
+      failed: チャットルームの作成に失敗しました
     update:
-      success: 'チャットルーム設定を更新しました'
-      failed: 'チャットルーム設定の更新に失敗しました'
+      success: チャットルーム設定を更新しました
+      failed: チャットルーム設定の更新に失敗しました
     destroy:
-      success: 'チャットルームを削除しました'
-      failed: 'チャットルームの削除に失敗しました'
+      success: チャットルームを削除しました
+      failed: チャットルームの削除に失敗しました
+    set_code_numbers:
+      success: コードナンバーをセットしました
+      failed: コードナンバーのセットに失敗しました
+    list_for_group:
+      title: チャットルーム一覧
+      delete: 削除
+      no_chat_room: まだグループ内にチャットルームはありません
+    list_for_user:
+      title: チャットルーム一覧
+      delete: 削除
+      no_chat_room: チャットルームにまだ参加していません
