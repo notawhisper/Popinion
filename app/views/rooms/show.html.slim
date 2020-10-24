@@ -1,14 +1,11 @@
 h1 Rooms#show
 
-= "ルーム名: #{@room.name}"
+= "#{Room.human_attribute_name :name}: #{@room.name}"
 br
-= "議題・詳細: #{@room.description}"
+= "#{Room.human_attribute_name :description}: #{@room.description}"
 
 br
-= link_to "設定編集", edit_room_path(@room)
-
-
-= render partial: 'chat_members/new', locals: { room: @room } if current_user == @room.host
+= link_to t('.edit'), edit_room_path(@room)
 
 = render partial: 'chat_members/index', locals: { room: @room }
 br

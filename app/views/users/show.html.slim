@@ -1,11 +1,11 @@
 h1
-  = t'.title'
+  = t('.title')
 p
   = @user.name
 p
   = @user.email
 p
-  = link_to "ユーザー情報の編集・削除", edit_user_registration_path
+  = link_to t('.edit'), edit_user_registration_path
 
 = render partial: 'groups/index', locals: { my_groups: @user.groups }
 

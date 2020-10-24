@@ -10,11 +10,11 @@ html
   body
     header
       h2
-        | POPINION
-      = link_to "チャットルーム作成", new_room_path
-      = link_to "グループ作成", new_group_path
-      = link_to "マイページ", user_path(current_user)
-      = link_to "ログアウト", destroy_user_session_path, method: :delete if user_signed_in?
+        = t('.title')
+      = link_to t('.create_room'), new_room_path
+      = link_to t('.create_group'), new_group_path
+      = link_to t('.my_page'), user_path(current_user)
+      = link_to t('.sign_out'), destroy_user_session_path, method: :delete if user_signed_in?
 
     p.notice
       = notice

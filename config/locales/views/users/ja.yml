@@ -1,8 +1,6 @@
 ja:
   users:
     show:
-      title: 'マイページ'
-    create:
-      notice:
-        success: 'ユーザー登録に成功しました'
+      title: マイページ
+      edit: プロフィールを編集する
 

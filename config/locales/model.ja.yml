@@ -3,6 +3,9 @@ ja:
     models:
       user: ユーザー
       room: チャットルーム
+      group: グループ
+      post: 投稿
+      chat_member: チャットメンバー
     attributes:
       user:
         id: ID
@@ -10,12 +13,18 @@ ja:
         email: メールアドレス
         password: パスワード
       room:
-        name: ルーム名
+        name: チャットルーム名
         description: 議題•備考
-        distinguish_speaker: 投稿者を区別する
-        let_guests_view_all: ホスト以外でも全投稿を閲覧できる
-        show_member_list: ホスト以外でもメンバーリストを閲覧できる
-
+        distinguish_speaker: どの投稿が同一の投稿者によるものか区別する
+        let_guests_view_all: ホスト以外にも全投稿の閲覧とPDFダウンロードを許可する
+        show_member_list: ホスト以外にもメンバーリストの閲覧を許可する
+      chat_member:
+        code_number: コードナンバー
+      group:
+        name: グループ名
+        description: グループ説明
+      post:
+        content: 投稿内容
   attributes:
     created_at: 作成日
     updated_at: 更新日

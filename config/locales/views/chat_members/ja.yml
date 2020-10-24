@@ -1,0 +1,10 @@
+ja:
+  chat_members:
+    index:
+      title: 参加メンバー
+      delete: 削除
+      memberlist_not_available: 参加メンバーは非公開です
+    new:
+      title: アカウントのemail
+      invite: 招待
+

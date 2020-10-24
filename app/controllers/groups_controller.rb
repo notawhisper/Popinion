@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_group, only: [:show, :edit, :update, :destroy]
-  before_action :reject_request_from_guest, only: [:edit, :update]
+  before_action :reject_request_from_guest, only: [:edit, :update, :destroy]
 
   def index
     @my_groups = current_user.groups
@@ -15,9 +15,9 @@ class GroupsController < ApplicationController
     group = Group.new(group_params)
     if group.save
       group.invite_group_member(group.owner)
-      redirect_to group
+      redirect_to group, notice: t('.success')
     else
-      render 'groups/new'
+      render 'groups/new', notice: t('.failed')
     end
   end
 
@@ -30,13 +30,18 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to @group, notice: "更新しました"
+      redirect_to @group, notice: t('.success')
     else
-      render :edit, notice: "更新できませんでした"
+      render :edit, notice: t('.failed')
     end
   end
 
   def destroy
+    if @group.destroy
+      redirect_to user_path(current_user), notice: t('.success')
+    else
+      redirect_to user_path(current_user), notice: t('.failed')
+    end
   end
 
   private

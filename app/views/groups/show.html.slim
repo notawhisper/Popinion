@@ -1,14 +1,15 @@
 p
-  = "グループ名: #{@group.name}"
+  = "#{Group.human_attribute_name :name}: #{@group.name}"
 p
-  = "詳細: #{@group.description}"
+  = "#{Group.human_attribute_name :description}: #{@group.description}"
 
-= link_to "edit", edit_group_path(@group) if current_user == @group.owner
+= link_to t('.edit'), edit_group_path(@group) if current_user == @group.owner
+br
+= link_to t('.delete'), group_path(@group), method: :delete if current_user == @group.owner
 
 = render partial: 'rooms/list_for_group', locals: { group: @group }
-br
-= render partial: 'group_members/form' if current_user == @group.owner
+
 br
 = render partial: 'group_members/index', locals: { group: @group }
 br
-= link_to "グループメンバーでルームを作成", new_room_path(from_group_show_page: true, room: { group_id: @group.id })
+= link_to t('.create_room_with_group_members'), new_room_path(from_group_show_page: true, room: { group_id: @group.id })
