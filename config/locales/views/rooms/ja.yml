@@ -3,6 +3,8 @@ ja:
     show:
       edit: 設定編集
       delete: 削除
+      download: これまでの投稿をPDFダウンロード
+      assign_code_number: メンバーにコードナンバーを割り振る
     create:
       success: チャットルームを作成しました
       failed: チャットルームの作成に失敗しました
