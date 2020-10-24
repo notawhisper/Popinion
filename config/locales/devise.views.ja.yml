@@ -35,6 +35,7 @@ ja:
         change_your_password: "パスワードを変更"
         confirm_new_password: "確認用新しいパスワード"
         new_password: "新しいパスワード"
+        new_password_with_minimum_length: "新しいパスワード（%{count}文字以上）"
       new:
         forgot_your_password: "パスワードを忘れましたか?"
         send_me_reset_password_instructions: "パスワードの再設定方法を送信する"
@@ -47,9 +48,11 @@ ja:
         title: "%{resource}編集"
         unhappy: "気に入りません"
         update: "更新"
-        we_need_your_current_password_to_confirm_your_changes: "変更を反映するには現在のパスワードを入力してください"
+        we_need_your_current_password_to_confirm_your_changes: "現在のパスワード(必須)"
+        new_password_with_minimum_length: "新しいパスワード（%{count}文字以上）"
       new:
         sign_up: "アカウント登録"
+        password_with_minimum_length: "パスワード（%{count}文字以上）"
     sessions:
       new:
         sign_in: "ログイン"

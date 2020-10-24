@@ -23,7 +23,6 @@ html
               = link_to t('.my_page'), user_path(current_user), class: "nav-link btn text-right"
             li.nav-item
               = link_to t('.sign_out'), destroy_user_session_path, method: :delete, class: "nav-link btn text-right" if user_signed_in?
-
     p.notice
       = notice
     p.alert
@@ -32,5 +31,5 @@ html
     / [開発用]ログイン状態の確認
     = current_user.name if current_user
     | でログイン中
-
-    = yield
+    .container
+      = yield

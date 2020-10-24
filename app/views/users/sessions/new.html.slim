@@ -1,18 +1,18 @@
-h2
-  = t('.sign_in')
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    br
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit t('.sign_in')
-= render "users/shared/links"
+.row
+  .col-sm-6.offset-sm-3
+    h2.text-center
+      = t('.sign_in')
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .form-group
+        = f.email_field :email, autofocus: true, autocomplete: "email",
+                                placeholder: "#{User.human_attribute_name :email}", class: "form-control"
+      .form-group
+        = f.password_field :password, autocomplete: "current-password",
+                                      placeholder: "#{User.human_attribute_name :password}", class: "form-control"
+      - if devise_mapping.rememberable?
+        .form-group
+          = f.check_box :remember_me
+          = f.label :remember_me
+      .actions.text-center
+        = f.submit t('.sign_in'), class: "btn btn-secondary"
+    = render "users/shared/links"
