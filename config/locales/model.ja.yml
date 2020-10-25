@@ -16,8 +16,8 @@ ja:
         name: チャットルーム名
         description: 議題•備考
         distinguish_speaker: どの投稿が同一の投稿者によるものか区別する
-        let_guests_view_all: ホスト以外にも全投稿の閲覧とPDFダウンロードを許可する
-        show_member_list: ホスト以外にもメンバーリストの閲覧を許可する
+        let_guests_view_all: ホスト以外に全投稿の閲覧とPDFダウンロードを許可する
+        show_member_list: ホスト以外にメンバーリストの閲覧を許可する
       chat_member:
         code_number: コードナンバー
       group:

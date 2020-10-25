@@ -1,10 +1,26 @@
-h3
-  = t('.title')
+table.table
+  thead
+  tr
+    th
+      = t('helpers.table.group_name')
+    th
+      = t('helpers.table.owner_name')
+    th
+      = t('helpers.table.members_number')
+    th
 
-- if my_groups.any?
-  - my_groups.each do |group|
-    = link_to "#{group.name}", group_path(group)
-    = link_to t('.delete'), group_path(group), method: :delete
-    br
-- else
-  = t('.no_groups')
+  tbody
+    - if my_groups.any?
+      - my_groups.each do |group|
+        tr
+          th
+            = link_to "#{group.name}", group_path(group)
+          th
+            = group.owner.name
+          th
+            = group.group_members.size
+          th
+            = link_to t('.delete'), group_path(group), method: :delete
+    - else
+      th.alert.alert-info role="alert"
+        = t('.no_groups')

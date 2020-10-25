@@ -1,3 +1,17 @@
-= form_with scope: :post, url: room_posts_path(room), local: true do |f|
-  = f.text_area :content
-  = f.submit
+/ button.btn.btn-primary data-toggle="modal" data-target="#postsNewModal"
+/   | 投稿する
+
+#postsNewModal.modal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        .modal-title
+          | 投稿する
+        button.btn-secondary data-dismiss="modal" &times;
+      .modal-body
+        = form_with scope: :post, url: room_posts_path(room), local: true do |f|
+          .form-group
+            = f.text_area :content, class: "form-control"
+          .form-group
+            = f.submit
+

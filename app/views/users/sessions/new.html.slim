@@ -13,6 +13,6 @@
         .form-group
           = f.check_box :remember_me
           = f.label :remember_me
-      .actions.text-center
+      .form-group.text-center
         = f.submit t('.sign_in'), class: "btn btn-secondary"
     = render "users/shared/links"

@@ -1,3 +1,5 @@
 = form_with url: group_members_path(@group), local: true do |f|
-  = f.email_field :email, placeholder: t('.title')
-  = f.submit t('.invite')
+  .input-group
+    = f.email_field :email, placeholder: t('.title'), class: "form-control"
+    .input-group-append
+      = f.submit t('.invite'), class: "btn btn-outline-primary"

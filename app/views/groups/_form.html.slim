@@ -1,7 +1,16 @@
-= form_with model: group, local: true do |f|
-  = f.label :name
-  = f.text_field :name
-  = f.label :description
-  = f.text_area :description
-  = f.hidden_field :owner_id
-  = f.submit
+.row
+  .col-sm-6.offset-sm-3
+    h2.text-center
+      - if action_name == 'new'
+        = t('.new')
+      - elsif action_name == 'edit'
+        = t('.edit')
+    = form_with model: group, local: true do |f|
+      .form-group
+      = f.text_field :name, autofocus: true, placeholder: "#{Group.human_attribute_name :name}", class: "form-control"
+      .form-group
+      = f.text_area :description, placeholder: "#{Group.human_attribute_name :description}", class: "form-control"
+      .form-group
+      = f.hidden_field :owner_id
+      .form-group.text-center
+        = f.submit class: "btn btn-secondary"

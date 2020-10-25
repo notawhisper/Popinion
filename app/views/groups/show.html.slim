@@ -1,15 +1,21 @@
-p
-  = "#{Group.human_attribute_name :name}: #{@group.name}"
-p
-  = "#{Group.human_attribute_name :description}: #{@group.description}"
+.row
+  .col-md-8.offset-md-1.pb-10.d-block.mb-500
+    .row
+      = render partial: 'rooms/list_for_group', locals: { group: @group }
+  .col-md-3
+    .card
+      .card-header
+        = Group.human_attribute_name :name
+      .card-body.font-weight-bold
+        = @group.name
+      .card-header.border-top
+        = Group.human_attribute_name :description
+      .card-body.text-monospace
+        = @group.description
 
-= link_to t('.edit'), edit_group_path(@group) if current_user == @group.owner
-br
-= link_to t('.delete'), group_path(@group), method: :delete if current_user == @group.owner
-
-= render partial: 'rooms/list_for_group', locals: { group: @group }
-
-br
-= render partial: 'group_members/index', locals: { group: @group }
-br
-= link_to t('.create_room_with_group_members'), new_room_path(from_group_show_page: true, room: { group_id: @group.id })
+      = render partial: 'group_members/index', locals: { group: @group }
+      = link_to t('.edit'), edit_group_path(@group), class: "btn btn-outline-secondary" if current_user == @group.owner
+      = link_to t('.create_room_with_group_members'), new_room_path(from_group_show_page: true, room: { group_id: @group.id }),
+              class: "btn btn-outline-secondary"
+      = link_to t('.delete'), group_path(@group), method: :delete,
+              class: "btn btn-outline-danger" if current_user == @group.owner

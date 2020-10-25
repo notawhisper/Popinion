@@ -1,9 +1,19 @@
-h3
+.card-header.border-top
   = t('.title')
-= render partial: 'group_members/form' if current_user == group.owner
-br
-- group.group_members.each do |member|
-  = member.name
-  = member.email if current_user == group.owner
-  = link_to t('.delete'), group_member_path(group, member), method: :delete if current_user == group.owner && member != group.owner
-  br
+.card-body
+  = render partial: 'group_members/form' if current_user == group.owner
+.card-body.table-responsive
+  table.table
+    tbody
+      - group.group_members.each do |member|
+        tr
+          th
+            = member.name
+          th
+            = member.email if current_user == group.owner
+          th
+            - if member == group.owner
+              = t('helpers.table.owner_name')
+            - elsif current_user == group.owner && member != group.owner
+              = link_to t('.delete'), group_member_path(group, member), method: :delete
+

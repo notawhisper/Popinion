@@ -1,6 +1,24 @@
 ja:
+  date:
+    formats:
+      default: "%Y/%m/%d"
+      long: "%Y年%m月%d日(%a)"
+      short: "%m/%d"
+    abbr_day_names: [日, 月, 火, 水, 木, 金, 土]
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      post: "%Y年%m月%d日(%a) %H時%M分"
+      room_or_group: "%Y年%m月%d日"
+      short: "%y/%m/%d %H:%M"
   helpers:
     submit:
       create: 作成
       update: 更新
       submit: 投稿
+    table:
+      group_name: グループ名
+      owner_name: オーナー
+      room_name: ルーム名
+      host_name: ホスト
+      members_number: 参加人数
