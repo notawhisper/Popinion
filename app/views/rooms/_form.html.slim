@@ -1,7 +1,10 @@
 .row
   .col-sm-6.offset-sm-3
     h2.text-center
-      = t('.create')
+      - if action_name == 'new'
+        = t('.new')
+      - elsif action_name == 'edit'
+        = t('.edit')
     = form_with model: @room, local: true do |f|
       .form-group
         = f.text_field :name, autofocus: true, placeholder: "#{Room.human_attribute_name :name}", class: "form-control"
@@ -24,4 +27,4 @@
         = hidden_field_tag :from_group_show_page, true if @room.group_id
         = f.hidden_field :group_id
       .form-group.text-center
-        = f.submit class: "btn btn-secondary"
+        = f.submit class: "btn btn-secondary", style: "width: 100%;"

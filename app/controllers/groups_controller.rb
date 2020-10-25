@@ -17,7 +17,7 @@ class GroupsController < ApplicationController
       group.invite_group_member(group.owner)
       redirect_to group, notice: t('.success')
     else
-      render 'groups/new', notice: t('.failed')
+      redirect_to new_group_path, alert: t('.failed')
     end
   end
 
@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
     if @group.update(group_params)
       redirect_to @group, notice: t('.success')
     else
-      render :edit, notice: t('.failed')
+      render :edit, alert: t('.failed')
     end
   end
 
@@ -40,7 +40,7 @@ class GroupsController < ApplicationController
     if @group.destroy
       redirect_to user_path(current_user), notice: t('.success')
     else
-      redirect_to user_path(current_user), notice: t('.failed')
+      redirect_to user_path(current_user), alert: t('.failed')
     end
   end
 

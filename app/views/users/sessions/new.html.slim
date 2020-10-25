@@ -11,8 +11,9 @@
                                       placeholder: "#{User.human_attribute_name :password}", class: "form-control"
       - if devise_mapping.rememberable?
         .form-group
-          = f.check_box :remember_me
-          = f.label :remember_me
+          .custom-control.custom-checkbox
+            = f.check_box :remember_me, { class: "custom-control-input", id: "remember_me" }
+            = f.label :remember_me, class: "custom-control-label", for: "remember_me"
       .form-group.text-center
-        = f.submit t('.sign_in'), class: "btn btn-secondary"
+        = f.submit t('.sign_in'), class: "btn btn-secondary", style: "width: 100%;"
     = render "users/shared/links"

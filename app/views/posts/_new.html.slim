@@ -1,17 +1,14 @@
-/ button.btn.btn-primary data-toggle="modal" data-target="#postsNewModal"
-/   | 投稿する
-
 #postsNewModal.modal
   .modal-dialog
-    .modal-content
+    .modal-content style="width: 680px; margin-left: -90px;"
       .modal-header
-        .modal-title
+        .modal-title.text-right
           | 投稿する
         button.btn-secondary data-dismiss="modal" &times;
       .modal-body
         = form_with scope: :post, url: room_posts_path(room), local: true do |f|
           .form-group
-            = f.text_area :content, class: "form-control"
+            = f.text_area :content, class: "form-control", style: "height: 30vh;"
           .form-group
-            = f.submit
+            = f.submit t('helpers.submit.submit'), class: "btn btn-primary", style: "width: 100%;"
 

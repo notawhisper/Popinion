@@ -8,4 +8,11 @@ html
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    = yield
+    .container-fluid
+      .notice
+        .alert-success
+          = notice
+      .alert
+        .alert-danger
+          = alert
+      = yield

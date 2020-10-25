@@ -1,7 +1,8 @@
 ja:
   rooms:
     form:
-      create: チャットルームを作成
+      new: チャットルームを作成
+      edit: ルーム設定を編集
     show:
       edit: 設定編集
       delete: 削除

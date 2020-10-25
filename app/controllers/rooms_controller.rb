@@ -31,7 +31,7 @@ class RoomsController < ApplicationController
     if @room.update(room_params)
       redirect_to @room, notice: t('.success')
     else
-      render :edit, notice: t('.failed')
+      render :edit, alert: t('.failed')
     end
   end
 
@@ -43,7 +43,7 @@ class RoomsController < ApplicationController
     if @room.destroy
       redirect_to user_path(current_user), notice: t('.success')
     else
-      redirect_to @room,  notice: t('.failed')
+      redirect_to @room,  alert: t('.failed')
     end
   end
 
@@ -62,13 +62,13 @@ class RoomsController < ApplicationController
 
   def set_code_numbers
     unless @room.nullify_code_numbers
-      render :show, notice: t('.failed')
+      render :show, alert: t('.failed')
     end
 
     if @room.assign_code_number
       redirect_to @room, notice: t('.success')
     else
-      render :show, notice: t('.failed')
+      render :show, alert: t('.failed')
     end
   end
 
@@ -99,7 +99,7 @@ class RoomsController < ApplicationController
 
   def check_download_permission
     unless @room.let_guests_view_all_true? || ( current_user == @room.host)
-      redirect_to @room, notice: "権限がありません"
+      redirect_to @room, alert: "権限がありません"
     end
   end
 

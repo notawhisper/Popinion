@@ -1,19 +1,32 @@
+
 .card-header.border-top
-  = t('.title')
-.card-body
-  - unless room.show_member_list_true? || current_user == room.host
-    .alert.alert-info role="alert"
-      = t('.memberlist_not_available')
-  - else
-    = render partial: 'chat_members/new', locals: { room: room } if current_user == room.host
-  .card-body.table-responsive
-    table.table
-      tbody
-        - room.chat_members.each do |member|
-          tr
-            th
-              = member.name if (current_user == room.host) || (room.show_member_list == "true")
-            th
-              = member.email if current_user == room.host
-            th
-              = link_to t('.delete'), room_chat_member_path(room, member), method: :delete if current_user == room.host && member != room.host
+  button.btn.btn-outline-secondary data-toggle="modal" data-target="#chatMembersModal"
+    = t('.title')
+
+#chatMembersModal.modal
+  .modal-dialog
+    .modal-content style="width: 680px; margin-left: -90px;"
+      .modal-header
+        .modal-title
+          = t('.title')
+        button.btn-secondary data-dismiss="modal" &times;
+      .modal-body
+        .card-body
+          - unless room.show_member_list_true? || current_user == room.host
+            .alert.alert-info role="alert"
+              = t('.memberlist_not_available')
+          - else
+            = render partial: 'chat_members/new', locals: {room: room} if current_user == room.host
+          .card-body.table-responsive
+            table.table
+              tbody
+                - room.chat_members.each do |member|
+                  tr
+                    th
+                      = member.name if (current_user == room.host) || (room.show_member_list == "true")
+                    th
+                      = member.email if current_user == room.host
+                    th
+                      = link_to t('.delete'), room_chat_member_path(room, member), method: :delete if current_user == room.host && member != room.host
+
+

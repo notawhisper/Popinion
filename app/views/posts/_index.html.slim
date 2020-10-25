@@ -2,7 +2,7 @@
 / （ローカル変数を用いるとpdfダウンロード時に値がnilとなり、エラーが出る）
 
 / このままだとpostの数だけクエリが走ってしまう。要改善。
-.overflow-auto
+.overflow-auto.border style="max-height: 80vh;"
   - @room.posts.each do |post|
     .card
       .card-header.py-1

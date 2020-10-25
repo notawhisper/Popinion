@@ -25,8 +25,10 @@ html
                     class: "nav-link btn text-right" if user_signed_in?
     .container-fluid
       .notice
-        = notice
+        .alert-success
+          = notice
       .alert
-        = alert
+        .alert-danger
+          = alert
 
       = yield

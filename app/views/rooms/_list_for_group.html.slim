@@ -28,7 +28,7 @@ table.table
           th
             = room.chat_members.size
           th
-            = link_to "delete", room_path(room), method: :delete
+            = link_to t('.delete'), room_path(room), method: :delete
       - else
         th.alert.alert-info role="alert"
           = t('.no_chat_room')

@@ -18,5 +18,5 @@
         = f.password_field :password_confirmation, autocomplete: "new-password",
                 placeholder: "#{User.human_attribute_name :password_confirmation}", class: "form-control"
       .form-group.text-center
-        = f.submit t('.sign_up'), class: "btn btn-secondary"
+        = f.submit t('.sign_up'), class: "btn btn-secondary", style: "width: 100%;"
       = render "users/shared/links"

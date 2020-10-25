@@ -28,19 +28,19 @@ class ChatMembersController < ApplicationController
 
   def user_exist?
     unless User.exists?(email: params[:email])
-      redirect_to @room, notice: "ユーザーが見つかりません"
+      redirect_to @room, alsert: "ユーザーが見つかりません"
     end
   end
 
   def existing_member_cannot_be_added
     if @room.chat_members.exists?(email: params[:email])
-      redirect_to @room, notice: "すでにメンバーです"
+      redirect_to @room, alert: "すでにメンバーです"
     end
   end
 
   def is_target_user_host?(target_user)
     if target_user == @room.host
-      redirect_to @room, notice: "ホストは削除できません"
+      redirect_to @room, alert: "ホストは削除できません"
     else
       false
     end

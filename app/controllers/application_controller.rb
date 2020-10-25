@@ -14,9 +14,9 @@ class ApplicationController < ActionController::Base
 
   def reject_request_from_guest
     if @room && (current_user != @room.host)
-      redirect_to @room, notice: "権限がありません"
+      redirect_to @room, alert: "権限がありません"
     elsif @group && (current_user != @group.owner)
-      redirect_to @group, notice: "権限がありません"
+      redirect_to @group, alert: "権限がありません"
     end
   end
 
