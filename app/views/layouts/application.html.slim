@@ -8,12 +8,12 @@ html
     = stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body.bg-light
-    nav.navbar.navbar-expand-md.navbar-light.bg-dark.sticky-top style="height: 80px;"
-      = image_tag 'logo.png', class: "position-fixed"
-      button.navbar-toggler[data-toggle="collapse" data-target="#navbarLinks"]
+    nav.navbar.navbar-expand-md.navbar-light.bg-dark.sticky-top style="min-height: 80px;"
+      = image_tag 'logo.png', class: "fixed-top"
+      button.navbar-toggler.bg-light.ml-auto[type="button" data-toggle="collapse" aria-controls="Navber" aria-expanded="false" data-target="#navbarLinks"]
         span.navbar-toggler-icon
       #navbarLinks.collapse.navbar-collapse
-        ul.navbar-nav.ml-auto
+        ul.navbar-nav.ml-auto.text-right
           li.nav-item
             = link_to t('.create_room'), new_room_path, class: "btn btn-outline-light text-right"
           li.nav-item
