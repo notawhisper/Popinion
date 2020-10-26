@@ -20,7 +20,7 @@ class RoomsController < ApplicationController
       invite_group_members_to_room
       redirect_to @room, notice: t('.success')
     else
-      render :new, notice: t('.failed')
+      render 'new'
     end
   end
 

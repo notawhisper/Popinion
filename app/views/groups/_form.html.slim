@@ -11,6 +11,7 @@
       - when 'update'
         = t('.edit')
     = form_with model: group, local: true do |f|
+      = render partial: 'layouts/error_messages', locals: { model: f.object }
       .form-group
       = f.text_field :name, autofocus: true, placeholder: "#{Group.human_attribute_name :name}", class: "form-control"
       .form-group

@@ -11,6 +11,7 @@
       - when 'update'
         = t('.edit')
     = form_with model: @room, local: true do |f|
+      = render 'layouts/error_messages', model: f.object
       .form-group
         = f.text_field :name, autofocus: true, placeholder: "#{Room.human_attribute_name :name}", class: "form-control"
       .form-group

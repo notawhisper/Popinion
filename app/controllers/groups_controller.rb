@@ -12,12 +12,13 @@ class GroupsController < ApplicationController
   end
 
   def create
-    group = Group.new(group_params)
-    if group.save
-      group.invite_group_member(group.owner)
-      redirect_to group, notice: t('.success')
+    @group = current_user.own_groups.build(group_params)
+    if @group.save
+      @group.invite_group_member(@group.owner)
+      redirect_to @group, notice: t('.success')
     else
-      redirect_to new_group_path, alert: t('.failed')
+      render "new"
+      # , alert: t('.failed')
     end
   end
 
