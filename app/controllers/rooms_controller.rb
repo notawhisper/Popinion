@@ -53,9 +53,9 @@ class RoomsController < ApplicationController
         render pdf: "pdf_download_#{@room.name}",
                encording: 'UTF-8',
                layout: 'layouts/pdf.html.slim',
-               template: "posts/_index.html.slim",
-               header: {
-                          center: "#{@room.name}\n#{@room.description}"}
+               template: "posts/_index.html.slim"
+               # header: {
+               #            center: "#{@room.name}\n#{@room.description}"}
       end
     end
   end

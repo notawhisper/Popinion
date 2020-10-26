@@ -6,7 +6,7 @@
           | 投稿する
         button.btn-secondary data-dismiss="modal" &times;
       .modal-body
-        = form_with scope: :post, url: room_posts_path(room), local: true do |f|
+        = form_with model: Post.new, url: room_posts_path(room), local: true do |f|
           .form-group
             = f.text_area :content, class: "form-control", style: "height: 30vh;"
           .form-group

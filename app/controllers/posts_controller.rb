@@ -2,12 +2,12 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   def create
     @room = Room.find(params[:room_id])
-    post = current_user.posts.build(post_params)
-    post.room_id = @room.id
-    if post.save
+    @post = current_user.posts.build(post_params)
+    @post.room_id = @room.id
+    if @post.save
       redirect_to room_path(@room.id)
     else
-      render template: "rooms/show"
+      render "rooms/show"
     end
   end
 
