@@ -4,4 +4,13 @@ html
     = stylesheet_link_tag wicked_pdf_asset_base64("pdf")
 
   body
-    = yield
+    h2
+      = Room.human_attribute_name :name
+      | :
+      = @room.name
+    h4
+      = Room.human_attribute_name :description
+      | :
+      = @room.description
+    .container-fluid
+      = yield

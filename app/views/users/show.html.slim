@@ -1,13 +1,25 @@
-h1
-  = t('.title')
-p
-  = @user.name
-p
-  = @user.email
-p
-  = link_to t('.edit'), edit_user_registration_path
+.row
+  .col-md-8.col-xl-7.offset-xl-1
+    ul.nav.nav-tabs
+      li.nav-item
+        a#group_tab.nav-link.active href="#group_list" data-toggle="tab" Groups
+      li.nav-item
+        a#room_tab.nav-link href="#room_list" data-toggle="tab" Rooms
+    .tab-content
+      #group_list.tab-pane.active
+        = render partial: 'groups/index', locals: { my_groups: @user.groups }
+      #room_list.tab-pane
+        = render partial: 'rooms/list_for_user', locals: { my_rooms: @user.rooms }
 
-= render partial: 'groups/index', locals: { my_groups: @user.groups }
-
-= render partial: 'rooms/list_for_user', locals: { my_rooms: @user.rooms }
-
+  .col-md-4.col-xl-3
+    .card
+      .card-header
+        = User.human_attribute_name :name
+      .card-body
+        = @user.name
+      .card-header.border-top
+        = User.human_attribute_name :email
+      .card-body
+        = @user.email
+      .card-body.border-top.btn.text-left
+        = link_to t('.edit'), edit_user_registration_path

@@ -1,15 +1,37 @@
-= form_with model: @room, local: true do |f|
-  = f.label :name
-  = f.text_field :name
-  = f.label :description
-  = f.text_area :description
-  = f.label :distinguish_speaker
-  = f.check_box :distinguish_speaker, {}, "true", "false"
-  = f.label :let_guests_view_all
-  = f.check_box :let_guests_view_all, {}, "true", "false"
-  = f.label :show_member_list
-  = f.check_box :show_member_list, {}, "true", "false"
-  = f.hidden_field :host_id
-  = hidden_field_tag :from_group_show_page, true if @room.group_id
-  = f.hidden_field :group_id
-  = f.submit
+.row
+  .col-sm-6.offset-sm-3
+    h2.text-center
+      - case action_name
+      - when 'new'
+        = t('.new')
+      - when 'create'
+        = t('.new')
+      - when 'edit'
+        = t('.edit')
+      - when 'update'
+        = t('.edit')
+    = form_with model: @room, local: true do |f|
+      = render 'layouts/error_messages', model: f.object
+      .form-group
+        = f.text_field :name, autofocus: true, placeholder: "#{Room.human_attribute_name :name}", class: "form-control"
+      .form-group
+        = f.text_area :description, placeholder: "#{Room.human_attribute_name :description}", class: "form-control"
+      .form-group
+        .custom-control.custom-checkbox
+          = f.check_box :distinguish_speaker, { class: "custom-control-input", id: "distinguish_check" }, "true", "false"
+          = f.label :distinguish_speaker, class: "custom-control-label", for: "distinguish_check"
+      .form-group
+        .custom-control.custom-checkbox
+          = f.check_box :let_guests_view_all, { class: "custom-control-input", id: "view_all_check" }, "true", "false"
+          = f.label :let_guests_view_all, class: "custom-control-label", for: "view_all_check"
+      .form-group
+        .custom-control.custom-checkbox
+          = f.check_box :show_member_list, { class: "custom-control-input", id: "member_list_check" }, "true", "false"
+          = f.label :show_member_list, class: "custom-control-label", for: "member_list_check"
+      .form-group
+        = f.hidden_field :host_id
+        = hidden_field_tag :from_group_show_page, true if @room.group_id
+        = f.hidden_field :group_id
+      .form-group.text-center
+        = f.submit class: "btn btn-secondary", style: "width: 100%;"
+      = link_to t('helpers.links.back'), :back, class: "btn btn-outline-primary", style: "width: 100%;"

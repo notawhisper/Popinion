@@ -1,24 +1,53 @@
-h1 Rooms#show
+= render partial: 'layouts/error_messages', locals: { model: @post }
+.row
+  .col-md-8.offset-md-1.pb-10.d-block
+    .row
+      .col-sm-6
+        h2
+          = @room.name
+      .col-sm-2.text-right.d-none.d-xs-block.d-sm-block.d-md-none
+        button.btn.btn-md.btn-outline-secondary.ml-auto[data-toggle="modal" data-target="#roomDescriptionModal"]
+          = Room.human_attribute_name :description
+      .col-sm-2.text-right.d-none.d-xs-block.d-sm-block.d-md-none
+        = link_to t('.download'), pdf_download_room_path(@room),
+                class: "btn btn-md btn-outline-secondary" if (current_user == @room.host) || @room.let_guests_view_all_true?
+      .col-sm-2.text-right
+        button.btn.btn-primary.d-none.d-xs-block.d-sm-block.d-md-none data-toggle="modal" data-target="#postsNewModal"
+          | 投稿する
+        = render partial: 'posts/new', locals: {room: @room}
 
-= "#{Room.human_attribute_name :name}: #{@room.name}"
-br
-= "#{Room.human_attribute_name :description}: #{@room.description}"
+    #roomDescriptionModal.modal[tabindex="-1" role="dialog"]
+      .modal-dialog role="document"
+        .modal-content
+          .modal-header
+            h5.modal-title
+              = Room.human_attribute_name :description
+            button.close[data-dismiss="modal" aria-label="Close"]
+              span aria-hidden="true" &times;
+          .modal-body
+            p
+              = @room.description
+    - if @room.posts.any?
+      - if @room.let_guests_view_all_true? || current_user == @room.host
+        = render partial: 'posts/index'
+      - else
+        = render partial: 'posts/restricted_index', locals: { restricted_posts: @restricted_posts }
+    - else
+      .alert.alert-info role="alert"
+        = t('.no_post')
 
-br
-= link_to t('.edit'), edit_room_path(@room)
-
-= render partial: 'chat_members/index', locals: { room: @room }
-br
-
-- if @room.let_guests_view_all_true? || current_user == @room.host
-  = render partial: 'posts/index'
-- else
-  = render partial: 'posts/restricted_index', locals: { restricted_posts: @restricted_posts }
 
 
-
-= render partial: 'posts/new', locals: { room: @room }
-br
-= link_to t('.download'), pdf_download_room_path(@room) if (current_user == @room.host) || @room.let_guests_view_all_true?
-br
-= link_to t('.assign_code_number'), assign_code_number_room_path(@room) if (current_user == @room.host)
+  .col-sm-12.col-md-3.col-xl-3
+    .card
+      .card-header
+        button.btn.btn-outline-secondary[data-toggle="modal" data-target="#roomDescriptionModal"]
+          = Room.human_attribute_name :description
+      = render partial: 'chat_members/index', locals: { room: @room }
+      = link_to t('.assign_code_number'), assign_code_number_room_path(@room),
+              class: "btn btn-outline-secondary"if (current_user == @room.host)
+      = link_to t('.edit'), edit_room_path(@room), class: "btn btn-outline-secondary" if current_user == @room.host
+      = link_to t('.download'), pdf_download_room_path(@room),
+                class: "btn btn-outline-secondary" if (current_user == @room.host) || @room.let_guests_view_all_true?
+      button.btn.btn-primary data-toggle="modal" data-target="#postsNewModal"
+        | 投稿する

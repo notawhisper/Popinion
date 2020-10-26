@@ -6,17 +6,18 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email])
   end
 
   def after_sign_in_path_for(resource)
-    user_path(id: current_user.id)
+    user_path(resource)
   end
 
   def reject_request_from_guest
     if @room && (current_user != @room.host)
-      redirect_to @room, notice: "権限がありません"
+      redirect_to @room, alert: "権限がありません"
     elsif @group && (current_user != @group.owner)
-      redirect_to @group, notice: "権限がありません"
+      redirect_to @group, alert: "権限がありません"
     end
   end
 

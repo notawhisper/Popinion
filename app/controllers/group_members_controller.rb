@@ -1,7 +1,7 @@
 class GroupMembersController < ApplicationController
   before_action :authenticate_user!
-  before_action :user_exist?, only: [:create]
   before_action :find_group
+  before_action :user_exist?, only: [:create]
   before_action :reject_request_from_guest
   before_action :is_target_user_already_member?, only: [:create]
 
@@ -10,7 +10,7 @@ class GroupMembersController < ApplicationController
     if @group.invite_group_member(target_user)
       redirect_to @group
     else
-      render template: "groups/show", notice: "無効なアドレスです"
+      render template: "groups/show", alert: "無効なアドレスです"
     end
   end
 
@@ -29,19 +29,19 @@ class GroupMembersController < ApplicationController
 
   def user_exist?
     unless User.exists?(email: params[:email])
-      redirect_to @group, notice: "ユーザーが見つかりません"
+      redirect_to @group, alert: "ユーザーが見つかりません"
     end
   end
 
   def is_target_user_already_member?
     if @group.group_members.exists?(email: params[:email])
-      redirect_to @group, notice: "すでにメンバーです"
+      redirect_to @group, alert: "すでにメンバーです"
     end
   end
 
   def is_target_user_owner?(target_user)
     if target_user == @group.owner
-      redirect_to @group, notice: "オーナーは削除できません"
+      redirect_to @group, alert: "オーナーは削除できません"
     else
       false
     end

@@ -12,12 +12,13 @@ class GroupsController < ApplicationController
   end
 
   def create
-    group = Group.new(group_params)
-    if group.save
-      group.invite_group_member(group.owner)
-      redirect_to group, notice: t('.success')
+    @group = current_user.own_groups.build(group_params)
+    if @group.save
+      @group.invite_group_member(@group.owner)
+      redirect_to @group, notice: t('.success')
     else
-      render 'groups/new', notice: t('.failed')
+      render "new"
+      # , alert: t('.failed')
     end
   end
 
@@ -32,7 +33,7 @@ class GroupsController < ApplicationController
     if @group.update(group_params)
       redirect_to @group, notice: t('.success')
     else
-      render :edit, notice: t('.failed')
+      render :edit, alert: t('.failed')
     end
   end
 
@@ -40,7 +41,7 @@ class GroupsController < ApplicationController
     if @group.destroy
       redirect_to user_path(current_user), notice: t('.success')
     else
-      redirect_to user_path(current_user), notice: t('.failed')
+      redirect_to user_path(current_user), alert: t('.failed')
     end
   end
 

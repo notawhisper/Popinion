@@ -1,9 +1,15 @@
 ja:
   groups:
+    form:
+      new: グループ作成
+      edit: グループ設定編集
     index:
       title: 所属グループ一覧
       delete: 削除
-      no_groups: まだグループに所属していません
+      no_groups: まだ所属していません
+      owner_name: オーナー
+      name: グループ名
+      group_members_number: 参加人数
     show:
       edit: グループ設定を編集
       create_room_with_group_members: グループメンバーでルームを作成

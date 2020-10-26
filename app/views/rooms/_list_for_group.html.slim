@@ -1,13 +1,34 @@
-h3
-  = t('.title')
 
-- if group.rooms.any?
-  - group.rooms.each do |room|
-    = link_to "#{room.name}", room_path(room)
-    = room.host.name
-    = room.chat_members.size
-    = link_to "delete", room_path(room), method: :delete
-    br
-- else
-  p
-    = t('.no_chat_room')
+.col-md-7
+  h3
+    = t('.title')
+.col-md-5.text-md-right.pb-3
+  = link_to t('groups.show.create_room_with_group_members'),
+          new_room_path(from_group_show_page: true, room: { group_id: @group.id }),
+          class: "btn btn-primary"
+
+table.table
+  thead
+  tr
+    th
+      = t('helpers.table.room_name')
+    th
+      = t('helpers.table.host_name')
+    th
+      = t('helpers.table.members_number')
+    th
+  tbody
+    tr
+      - if group.rooms.any?
+        - group.rooms.each do |room|
+          th
+            = link_to "#{room.name}", room_path(room)
+          th
+            = room.host.name
+          th
+            = room.chat_members.size
+          th
+            = link_to t('.delete'), room_path(room), method: :delete
+      - else
+        th.alert.alert-info role="alert"
+          = t('.no_chat_room')

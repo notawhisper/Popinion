@@ -1,11 +1,26 @@
-h3
-  = t('.title')
-- if my_rooms.any?
-  - my_rooms.each do |room|
-    = link_to "#{room.name}", room_path(room)
-    = room.host.name
-    = room.chat_members.size
-    = link_to t('.delete'), room_path(room), method: :delete
-    br
--else
-  = t('.no_chat_room')
+table.table
+  thead
+  tr
+    th
+      = t('helpers.table.room_name')
+    th
+      = t('helpers.table.host_name')
+    th
+      = t('helpers.table.members_number')
+    th
+
+  tbody
+    - if my_rooms.any?
+      - my_rooms.each do |room|
+        tr
+          th
+            = link_to "#{room.name}", room_path(room)
+          th
+            = room.host.name
+          th
+            = room.chat_members.size
+          th
+            = link_to t('.delete'), room_path(room), method: :delete
+    -else
+      th.alert.alert-info role="alert"
+        = t('.no_chat_room')

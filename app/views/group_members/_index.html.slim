@@ -1,9 +1,28 @@
-h3
+
+button.btn.btn-outline-secondary data-toggle="modal" data-target="#groupMembersModal"
   = t('.title')
-= render partial: 'group_members/form' if current_user == group.owner
-br
-- group.group_members.each do |member|
-  = member.name
-  = member.email if current_user == group.owner
-  = link_to t('.delete'), group_member_path(group, member), method: :delete if current_user == group.owner && member != group.owner
-  br
+
+#groupMembersModal.modal
+  .modal-dialog
+    .modal-content style="width: 680px; margin-left: -90px;"
+      .modal-header
+        .modal-title
+          = t('.title')
+        button.btn-secondary data-dismiss="modal" &times;
+      .modal-body
+        .card-body
+          = render partial: 'group_members/form' if current_user == group.owner
+        .card-body.table-responsive
+          table.table
+            tbody
+              - group.group_members.each do |member|
+                tr
+                  th
+                    = member.name
+                  th
+                    = member.email if current_user == group.owner
+                  th
+                    - if member == group.owner
+                      = t('helpers.table.owner_name')
+                    - elsif current_user == group.owner && member != group.owner
+                      = link_to t('.delete'), group_member_path(group, member), method: :delete

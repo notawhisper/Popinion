@@ -1,3 +1,8 @@
-h1 Top#index
-= link_to t('.sign_in'), new_user_session_path
-= link_to t('.sign_up'), new_user_registration_path
+nav.navbar.navbar-expand-md.navbar-light.bg-dark style="height: 150px;"
+  .col-6.text-center
+    = link_to t('.sign_in'), new_user_session_path, class: "btn btn-lg btn-outline-light"
+  .col-6.text-center
+    = link_to t('.sign_up'), new_user_registration_path, class: "btn btn-lg btn-outline-light"
+.row
+  .col-12
+    = image_tag 'bg_top.png', class: "card-img", style: "width: 100%;"

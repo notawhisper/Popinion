@@ -1,5 +1,11 @@
 ja:
   activerecord:
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
     models:
       user: ユーザー
       room: チャットルーム
@@ -12,12 +18,13 @@ ja:
         name: ユーザーネーム
         email: メールアドレス
         password: パスワード
+        current_password: 現在のパスワード
       room:
         name: チャットルーム名
         description: 議題•備考
         distinguish_speaker: どの投稿が同一の投稿者によるものか区別する
-        let_guests_view_all: ホスト以外にも全投稿の閲覧とPDFダウンロードを許可する
-        show_member_list: ホスト以外にもメンバーリストの閲覧を許可する
+        let_guests_view_all: ホスト以外に全投稿の閲覧とPDFダウンロードを許可する
+        show_member_list: ホスト以外にメンバーリストの閲覧を許可する
       chat_member:
         code_number: コードナンバー
       group:
@@ -25,6 +32,38 @@ ja:
         description: グループ説明
       post:
         content: 投稿内容
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      accepted: を受諾してください
+      blank: を入力してください
+      confirmation: と%{attribute}の入力が一致しません
+      empty: を入力してください
+      equal_to: は%{count}にしてください
+      even: は偶数にしてください
+      exclusion: は予約されています
+      greater_than: は%{count}より大きい値にしてください
+      greater_than_or_equal_to: は%{count}以上の値にしてください
+      inclusion: は一覧にありません
+      invalid: は不正な値です
+      less_than: は%{count}より小さい値にしてください
+      less_than_or_equal_to: は%{count}以下の値にしてください
+      model_invalid: 'バリデーションに失敗しました: %{errors}'
+      not_a_number: は数値で入力してください
+      not_an_integer: は整数で入力してください
+      odd: は奇数にしてください
+      other_than: は%{count}以外の値にしてください
+      present: は入力しないでください
+      required: を入力してください
+      taken: はすでに存在します
+      too_long: は%{count}文字以内で入力してください
+      too_short: は%{count}文字以上で入力してください
+      wrong_length: は%{count}文字で入力してください
+    template:
+      body: 次の項目を確認してください
+      header:
+        one: "%{model}にエラーが発生しました"
+        other: "%{model}に%{count}個のエラーが発生しました"
   attributes:
     created_at: 作成日
     updated_at: 更新日

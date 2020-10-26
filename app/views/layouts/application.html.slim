@@ -5,24 +5,30 @@ html
       | Popinion
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  body
-    header
-      h2
-        = t('.title')
-      = link_to t('.create_room'), new_room_path
-      = link_to t('.create_group'), new_group_path
-      = link_to t('.my_page'), user_path(current_user)
-      = link_to t('.sign_out'), destroy_user_session_path, method: :delete if user_signed_in?
+  body.bg-light
+    nav.navbar.navbar-expand-md.navbar-light.bg-dark.sticky-top style="height: 80px;"
+      = image_tag 'logo.png', class: "position-fixed"
+      button.navbar-toggler[data-toggle="collapse" data-target="#navbarLinks"]
+        span.navbar-toggler-icon
+      #navbarLinks.collapse.navbar-collapse
+        ul.navbar-nav.ml-auto
+          li.nav-item
+            = link_to t('.create_room'), new_room_path, class: "btn btn-outline-light text-right"
+          li.nav-item
+            = link_to t('.create_group'), new_group_path, class: "btn btn-outline-light text-right"
+          li.nav-item
+            = link_to t('.my_page'), user_path(current_user), class: "btn btn-outline-light text-right"
+          li.nav-item
+            = link_to t('.sign_out'), destroy_user_session_path, method: :delete,
+                    class: "btn btn-outline-light text-right" if user_signed_in?
+    .container-fluid
+      .notice
+        .alert-success
+          = notice
+      .alert
+        .alert-danger
+          = alert
 
-    p.notice
-      = notice
-    p.alert
-      = alert
-
-    / [開発用]ログイン状態の確認
-    = current_user.name if current_user
-    | でログイン中
-
-    = yield
+      = yield
