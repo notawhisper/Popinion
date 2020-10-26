@@ -1,9 +1,14 @@
 .row
   .col-sm-6.offset-sm-3
     h2.text-center
-      - if action_name == 'new'
+      - case action_name
+      - when 'new'
         = t('.new')
-      - elsif action_name == 'edit'
+      - when 'create'
+        = t('.new')
+      - when 'edit'
+        = t('.edit')
+      - when 'update'
         = t('.edit')
     = form_with model: @room, local: true do |f|
       .form-group
@@ -28,3 +33,4 @@
         = f.hidden_field :group_id
       .form-group.text-center
         = f.submit class: "btn btn-secondary", style: "width: 100%;"
+      = link_to t('helpers.links.back'), :back, class: "btn btn-outline-primary", style: "width: 100%;"

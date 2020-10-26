@@ -22,3 +22,5 @@ ja:
       room_name: ルーム名
       host_name: ホスト
       members_number: 参加人数
+    links:
+      back: 戻る
