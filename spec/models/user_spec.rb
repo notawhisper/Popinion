@@ -8,6 +8,13 @@ RSpec.describe User, type: :model do
         expect(user).not_to be_valid
       end
     end
+    context '名前が31文字以上の場合' do
+      it 'バリデーションにひっかかる' do
+        name = "甲" * 31
+        user = User.new(name: name, email: 'test@test.com', password: 'password', password_confirmation: 'password')
+        expect(user).not_to be_valid
+      end
+    end
     describe 'メールアドレスのテスト' do
       context '空の場合' do
         it 'バリデーションにひっかかる' do
@@ -24,6 +31,13 @@ RSpec.describe User, type: :model do
       context 'ドメインが記述されていない場合' do
         it 'バリデーションにひっかかる' do
           user = User.new(name: 'test', email: 'test@', password: 'password', password_confirmation: 'password')
+          expect(user).not_to be_valid
+        end
+      end
+      context 'すでに登録されているアドレスの場合' do
+        let!(:existing_user) { FactoryBot.create(:user) }
+        it 'バリデーションにひっかかる' do
+          user = User.new(name: 'test', email: existing_user.email, password: 'password', password_confirmation: 'password')
           expect(user).not_to be_valid
         end
       end

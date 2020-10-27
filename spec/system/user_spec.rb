@@ -9,23 +9,24 @@ RSpec.describe 'ユーザー機能', type: :system do
         fill_in :user_email, with: 'user@user.com'
         fill_in :user_password, with: 'password'
         fill_in :user_password_confirmation, with: 'password'
-        click_on "Sign up"
+        click_on I18n.t('users.registrations.new.sign_up')
       end
-      it 'ユーザー詳細ページに飛んでいる' do
-        expect(page).to have_content "マイページ"
-      end
-      it 'ログイン状態になっている' do
+      it 'ユーザー詳細ページに遷移する' do
+        expect(page).to have_content I18n.t('users.show.title')
       end
     end
   end
-  # describe 'ログイン機能' do
-  #   context 'ログインした場合' do
-  #     it 'ログインすることができる' do
-  #     end
-  #     it 'ユーザー詳細ページにアクセスできる' do
-  #     end
-  #     it 'ログアウトができる' do
-  #     end
-  #   end
-  # end
+  describe 'ログイン・ログアウト機能' do
+    context 'ログインした場合' do
+      before do
+        visit  new_session_path
+        fill_in :user_email, with: user.email
+        fill_in :user_password, with: user.password
+        click_on I18n.t('users.sessions.new.sign_in')
+      end
+      it 'ユーザー詳細ページに遷移する' do
+        expect(page).to have_content I18n.t('users.show.title')
+      end
+    end
+  end
 end
