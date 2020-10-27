@@ -70,5 +70,18 @@ RSpec.describe 'ユーザー機能', type: :system do
         expect(page).to have_content new_name
       end
     end
+    describe 'ユーザーの削除機能' do
+      context 'ユーザー削除のボタンをおした場合' do
+        before do
+          page.accept_confirm do
+            click_on I18n.t('users.registrations.edit.cancel_my_account')
+          end
+        end
+        it 'ユーザーが削除される' do
+          sleep 1
+          expect(User.where(id: user.id).count).to eq 0
+        end
+      end
+    end
   end
 end
