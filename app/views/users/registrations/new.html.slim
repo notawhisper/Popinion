@@ -1,22 +1,25 @@
 .row
-  .col-sm-6.offset-sm-3
-    h2.text-center
-      = t('.sign_up')
-    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      = render "devise/shared/error_messages", resource: resource
-      .form-group
-        = f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "#{User.human_attribute_name :name}", class: "form-control"
-        .form-group
-        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "#{User.human_attribute_name :email}", class: "form-control"
-      .form-group
-        - if @minimum_password_length
-          = f.password_field :password, autocomplete: "new-password", placeholder: t('.password_with_minimum_length',
-                  count: @minimum_password_length), class: "form-control"
-        - else
-          = f.password_field :password, autocomplete: "new-password", placeholder: "#{User.human_attribute_name :password}", class: "form-control"
-      .form-group
-        = f.password_field :password_confirmation, autocomplete: "new-password",
-                placeholder: "#{User.human_attribute_name :password_confirmation}", class: "form-control"
-      .form-group.text-center
-        = f.submit t('.sign_up'), class: "btn btn-secondary", style: "width: 100%;"
-      = render "users/shared/links"
+  .col-sm-6.offset-sm-3.d-flex.align-items-center style="height: 70vh;"
+    .card style="width: 100%;"
+      .card-header
+        h2.text-center
+          = t('.sign_up')
+      .card-body
+        = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          = render "devise/shared/error_messages", resource: resource
+          .form-group
+            = f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "#{User.human_attribute_name :name}", class: "form-control"
+            .form-group
+            = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "#{User.human_attribute_name :email}", class: "form-control"
+          .form-group
+            - if @minimum_password_length
+              = f.password_field :password, autocomplete: "new-password", placeholder: t('.password_with_minimum_length',
+                      count: @minimum_password_length), class: "form-control"
+            - else
+              = f.password_field :password, autocomplete: "new-password", placeholder: "#{User.human_attribute_name :password}", class: "form-control"
+          .form-group
+            = f.password_field :password_confirmation, autocomplete: "new-password",
+                    placeholder: "#{User.human_attribute_name :password_confirmation}", class: "form-control"
+          .form-group.text-center
+            = f.submit t('.sign_up'), class: "btn btn-secondary", style: "width: 100%;"
+          = render "users/shared/links"

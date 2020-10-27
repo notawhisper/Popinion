@@ -16,6 +16,6 @@
       = render partial: 'group_members/index', locals: { group: @group }
       = link_to t('.edit'), edit_group_path(@group), class: "btn btn-outline-secondary" if current_user == @group.owner
       = link_to t('.create_room_with_group_members'), new_room_path(from_group_show_page: true, room: { group_id: @group.id }),
-              class: "btn btn-outline-secondary"
-      = link_to t('.delete'), group_path(@group), method: :delete,
+              class: "btn btn-outline-secondary", id: "default_create_room_to_group_button"
+      = link_to t('.delete'), group_path(@group), method: :delete, data: { confirm: t('users.registrations.edit.are_you_sure') },
               class: "btn btn-outline-danger" if current_user == @group.owner

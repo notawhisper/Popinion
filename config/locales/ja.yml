@@ -15,7 +15,7 @@ ja:
     submit:
       create: 作成
       update: 更新
-      submit: 投稿
+      submit: 投稿する
     table:
       group_name: グループ名
       owner_name: オーナー

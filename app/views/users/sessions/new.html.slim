@@ -1,19 +1,22 @@
 .row
-  .col-sm-6.offset-sm-3
-    h2.text-center
-      = t('.sign_in')
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      .form-group
-        = f.email_field :email, autofocus: true, autocomplete: "email",
-                                placeholder: "#{User.human_attribute_name :email}", class: "form-control"
-      .form-group
-        = f.password_field :password, autocomplete: "current-password",
-                                      placeholder: "#{User.human_attribute_name :password}", class: "form-control"
-      - if devise_mapping.rememberable?
-        .form-group
-          .custom-control.custom-checkbox
-            = f.check_box :remember_me, { class: "custom-control-input", id: "remember_me" }
-            = f.label :remember_me, class: "custom-control-label", for: "remember_me"
-      .form-group.text-center
-        = f.submit t('.sign_in'), class: "btn btn-secondary", style: "width: 100%;"
-    = render "users/shared/links"
+  .col-sm-6.offset-sm-3.d-flex.align-items-center style="height: 70vh;"
+    .card style="width: 100%;"
+      .card-header
+        h2.text-center
+          = t('.sign_in')
+      .card-body
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .form-group
+            = f.email_field :email, autofocus: true, autocomplete: "email",
+                    placeholder: "#{User.human_attribute_name :email}", class: "form-control"
+          .form-group
+            = f.password_field :password, autocomplete: "current-password",
+                    placeholder: "#{User.human_attribute_name :password}", class: "form-control"
+          - if devise_mapping.rememberable?
+            .form-group
+              .custom-control.custom-checkbox
+                = f.check_box :remember_me, {class: "custom-control-input", id: "remember_me"}
+                = f.label :remember_me, class: "custom-control-label", for: "remember_me"
+          .form-group.text-center
+            = f.submit t('.sign_in'), class: "btn btn-secondary", style: "width: 100%;"
+          = render "users/shared/links"
