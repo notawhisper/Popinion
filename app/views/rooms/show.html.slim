@@ -13,7 +13,7 @@
                 class: "btn btn-md btn-outline-secondary" if (current_user == @room.host) || @room.let_guests_view_all_true?
       .col-sm-2.text-right
         button.btn.btn-primary.d-none.d-xs-block.d-sm-block.d-md-none data-toggle="modal" data-target="#postsNewModal"
-          | 投稿する
+          = t('helpers.submit.submit')
         = render partial: 'posts/new', locals: {room: @room}
 
     #roomDescriptionModal.modal[tabindex="-1" role="dialog"]
@@ -50,4 +50,4 @@
       = link_to t('.download'), pdf_download_room_path(@room),
                 class: "btn btn-outline-secondary" if (current_user == @room.host) || @room.let_guests_view_all_true?
       button.btn.btn-primary data-toggle="modal" data-target="#postsNewModal"
-        | 投稿する
+        = t('helpers.submit.submit')
