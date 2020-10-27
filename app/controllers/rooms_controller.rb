@@ -104,14 +104,28 @@ class RoomsController < ApplicationController
   end
 
   def get_own_posts
-    @room.posts.find_by(user_id: current_user.id)
+    @room.posts.where(user: current_user)
   end
 
   def get_posts_by_host
-    @room.posts.find_by(user_id: @room.host.id)
+    @room.posts.where(user: @room.host)
+  end
+
+  def only_posts_by_host?
+    (get_posts_by_host.any? && get_own_posts.none?) ? true : false
+  end
+
+  def only_posts_by_myself?
+    (get_posts_by_host.none? && get_own_posts.any?) ? true : false
   end
 
   def set_restricted_posts
-    @restricted_posts = [get_posts_by_host, get_own_posts].flatten
+    if only_posts_by_host?
+      @restricted_posts = get_posts_by_host
+    elsif only_posts_by_myself?
+      @restricted_posts = get_own_posts
+    else
+      @restricted_posts = [get_posts_by_host, get_own_posts].flatten
+    end
   end
 end
