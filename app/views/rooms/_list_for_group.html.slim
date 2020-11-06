@@ -22,7 +22,7 @@ table.table
       - if group.rooms.any?
         - group.rooms.each do |room|
           th
-            = link_to "#{room.name}", room_path(room)
+            = link_to "#{room.name}", room_path(room), "data-turbolinks": false
           th
             = room.host.name
           th

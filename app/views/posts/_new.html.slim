@@ -4,11 +4,13 @@
       .modal-header
         .modal-title.text-right
           = t('helpers.submit.submit')
-        button.btn-secondary data-dismiss="modal" &times;
+        button#btnCloser.btn-secondary data-dismiss="modal" &times;
       .modal-body
-        = form_with model: Post.new, url: room_posts_path(room), local: true do |f|
+        = form_with model: Post.new, url: room_posts_path(room) do |f|
           .form-group
             = f.text_area :content, class: "form-control", style: "height: 30vh;"
           .form-group
             = f.submit t('helpers.submit.submit'), class: "btn btn-primary", style: "width: 100%;", id: "post_in_modal"
-
+        / .form-group
+        /   = text_area_tag 'post'
+        /   = submit_tag t('helpers.submit.submit'), class: "form-control", value: "投稿", onclick: "postChatMessage()"

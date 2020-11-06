@@ -5,14 +5,24 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     @post.room_id = @room.id
     if @post.save
-      redirect_to room_path(@room.id)
-    else
-      render "rooms/show"
+      broadcast(@post)
     end
+    # if @post.save
+    #   # redirect_to room_path(@room.id)
+    #   render "rooms/show"
+    # else
+    #   render "rooms/show"
+    # end
   end
 
   private
   def post_params
     params.require(:post).permit(:content)
+  end
+
+  def broadcast(post)
+    @room = Room.find(params[:room_id])
+    code_number = current_user.current_code_number(post.room)
+    ActionCable.server.broadcast "chat_room_channel", message: post.content
   end
 end
