@@ -23,6 +23,8 @@ class PostsController < ApplicationController
   def broadcast(post)
     @room = Room.find(params[:room_id])
     code_number = current_user.current_code_number(post.room)
-    ActionCable.server.broadcast "chat_room_channel", message: post.content
+    ActionCable.server.broadcast "chat_room_#{@room.id}", message: post.content, date: post.created_at,
+                                 code_number: code_number, let_guests_view_all: @room.let_guests_view_all,
+                                 distinguish_speaker: @room.distinguish_speaker
   end
 end
