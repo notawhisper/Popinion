@@ -14,14 +14,8 @@ document.addEventListener("turbolinks:load", function() {
             var chat = document.getElementById('fullIndex');
             var newMessage = document.createElement('p');
             newMessage.innerText = data['message'];
-            // newMessage.innerText = data['message'];
             chat.appendChild(newMessage);
-            // Called when there's incoming data on the websocket for this channel
         }
-
-        // speak: function(message) {
-        //     return this.perform('speak', { message: message });
-        // }
     });
 });
 
