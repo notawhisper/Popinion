@@ -27,6 +27,7 @@
           .modal-body
             p
               = @room.description
+
     div id="posts" data-room_id="#{@room.id}"
       #fullIndex.overflow-auto.border style="max-height: 80vh;"
         - if @room.posts.any?

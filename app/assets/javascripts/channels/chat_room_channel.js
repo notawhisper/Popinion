@@ -11,10 +11,11 @@ document.addEventListener("turbolinks:load", function() {
         },
 
         received: function (data) {
-            var chat = document.getElementById('fullIndex');
-            var newMessage = document.createElement('p');
-            newMessage.innerText = data['message'];
-            chat.appendChild(newMessage);
+            setDefaultPost(data);
+            // let chat = document.querySelector('#fullIndex');
+            // let newMessage = document.createElement('p');
+            // newMessage.innerText = data['message'];
+            // chat.appendChild(newMessage);
         }
     });
 });
