@@ -127,5 +127,6 @@ class RoomsController < ApplicationController
     else
       @restricted_posts = [get_posts_by_host, get_own_posts].flatten
     end
+    @restricted_posts = @restricted_posts.sort { |a, b| a.created_at <=> b.created_at }
   end
 end
