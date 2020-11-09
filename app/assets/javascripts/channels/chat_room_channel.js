@@ -1,7 +1,7 @@
 document.addEventListener("turbolinks:load", function() {
     App.chat_room = App.cable.subscriptions.create({
         channel: "ChatRoomChannel",
-        room_id: document.getElementById('posts').getAttribute('data-room_id')
+        room_id: document.querySelector('#posts').getAttribute('data-room_id')
     }, {
         // room_id: $('#posts').data('room_id'),
         connected: function () {
@@ -11,12 +11,13 @@ document.addEventListener("turbolinks:load", function() {
         },
 
         received: function (data) {
-            setDefaultPost(data);
-            // let chat = document.querySelector('#fullIndex');
-            // let newMessage = document.createElement('p');
-            // newMessage.innerText = data['message'];
-            // chat.appendChild(newMessage);
+            if (data['distinguish_speaker'] === 'true') {
+                insertPost(html.distinguished(data));
+            } else if (data['distinguish_speaker'] === 'false') {
+                insertPost(html.undistinguished(data));
+            }
         }
     });
 });
 
+6
