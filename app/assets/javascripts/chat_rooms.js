@@ -22,10 +22,10 @@ const getCreatedAt = (date) => {
         `${hh}時`+
         `${mi}分`;
     return createdAt;
-}
+};
 
 const html =  {
- distinguished: (data) => {
+    distinguished: (data) => {
      let target = '<div class="card">' +
          '<div class="card-header py-1">' +
          '<div class="row">' +
@@ -42,8 +42,8 @@ const html =  {
          '</div>' +
          '</div>';
      return target;
- },
- undistinguished: (data) => {
+    },
+    undistinguished: (data) => {
      let target = '<div class="card">' +
          '<div class="card-header py-1">' +
          '<div class="row">' +
@@ -57,7 +57,7 @@ const html =  {
          '</div>' +
          '</div>';
      return target;
- }
+    }
 };
 
 // const fullHtml = '<div class="card">' +
@@ -93,3 +93,4 @@ const insertPost = (html) => {
     let targetParent = document.querySelector('#fullIndex');
     targetParent.insertAdjacentHTML('beforeend', html);
 };
+

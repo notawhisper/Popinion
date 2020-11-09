@@ -12,6 +12,8 @@ class Users::SessionsController < Devise::SessionsController
   def create
     super
     cookies.encrypted[:user_id] = current_user.id
+    set_browsing_id
+    binding.pry
   end
 
   # DELETE /resource/sign_out
@@ -25,4 +27,8 @@ class Users::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  private
+  def set_browsing_id
+    cookies[:browsing_id] = current_user.id
+  end
 end
