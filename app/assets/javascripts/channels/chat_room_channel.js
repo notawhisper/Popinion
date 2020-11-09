@@ -19,5 +19,3 @@ document.addEventListener("turbolinks:load", function() {
         }
     });
 });
-
-6
