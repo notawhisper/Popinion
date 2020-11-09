@@ -1,3 +1,17 @@
+const getBrowsingUser = (cookie) => {
+    let cookies = cookie;
+    let cookiesArray = cookies.split('; ');
+    let value = null;
+    for (let c of cookiesArray) {
+        let cookieArray = c.split('=');
+        if( cookieArray[0] === "browsing_id"){
+            value = cookieArray[1];
+        }
+    }
+    let browsing_user = Number(value);
+    return browsing_user;
+};
+
 const toDoubleDigits = (num) => {
     num += "";
     if (num.length === 1) {
@@ -59,35 +73,6 @@ const html =  {
      return target;
     }
 };
-
-// const fullHtml = '<div class="card">' +
-//     '<div class="card-header py-1">' +
-//     '<div class="row">' +
-//     '<div class="col-4">' +
-//     `Code: ${data['code_number']}` +
-//     '</div>' +
-//     '<div class="col-8 text-right small">' +
-//     `${getCreatedAt(data['date'])}` +
-//     '</div>' +
-//     '</div>' +
-//     '</div>' +
-//     '<div class="card-body py-2 text-monospace">' +
-//     `${data['message']}` +
-//     '</div>' +
-//     '</div>';
-//
-// const distinguishedHtml = '<div class="card">' +
-//     '<div class="card-header py-1">' +
-//     '<div class="row">' +
-//     '<div class="col-12 text-left small">' +
-//     `${getCreatedAt(data['date'])}` +
-//     '</div>' +
-//     '</div>' +
-//     '</div>' +
-//     '<div class="card-body py-2 text-monospace">' +
-//     `${data['message']}` +
-//     '</div>' +
-//     '</div>';
 
 const insertPost = (html) => {
     let targetParent = document.querySelector('#fullIndex');

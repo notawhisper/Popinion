@@ -10,16 +10,7 @@ document.addEventListener("turbolinks:load", function() {
         },
 
         received: function (data) {
-            let cookies = document.cookie;
-            let cookiesArray = cookies.split('; ');
-            let value = null;
-            for (let c of cookiesArray) {
-                let cookieArray = c.split('=');
-                if( cookieArray[0] === "browsing_id"){
-                    value = cookieArray[1];
-                }
-            }
-            let browsing_user = Number(value);
+            let browsing_user = getBrowsingUser(document.cookie);
             if (data['let_guests_view_all'] === true ||
                 browsing_user === data['poster'] ||
                 browsing_user === data['room_host'] ||
