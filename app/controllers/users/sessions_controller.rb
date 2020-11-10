@@ -11,9 +11,10 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     super
-    cookies.encrypted[:user_id] = current_user.id
-    set_browsing_id
     binding.pry
+    cookies.encrypted[:user_id] = current_user.id
+    binding.pry
+    set_browsing_id
   end
 
   # DELETE /resource/sign_out

@@ -1,3 +1,15 @@
+
+const scrollToRecentMessage = () => {
+    const messagesArea = document.querySelector('#fullIndex');
+    messagesArea.scrollTop = messagesArea.scrollHeight;
+};
+
+window.addEventListener('DOMContentLoaded',() => {
+    if (document.querySelector('#fullIndex') !== null) {
+        scrollToRecentMessage();
+    }
+});
+
 const getBrowsingUser = (cookie) => {
     let cookies = cookie;
     let cookiesArray = cookies.split('; ');
