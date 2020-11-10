@@ -2,6 +2,7 @@ class RoomsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_room, only: [:edit, :update, :show, :destroy, :download, :set_code_numbers]
   before_action :check_download_permission, only: :download
+  before_action :reject_request_from_guest, only: [:edit, :update, :destroy]
 
   def index
   end
@@ -127,5 +128,6 @@ class RoomsController < ApplicationController
     else
       @restricted_posts = [get_posts_by_host, get_own_posts].flatten
     end
+    @restricted_posts = @restricted_posts.sort { |a, b| a.created_at <=> b.created_at }
   end
 end

@@ -9,9 +9,13 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    super
+    binding.pry
+    cookies.encrypted[:user_id] = current_user.id
+    binding.pry
+    set_browsing_id
+  end
 
   # DELETE /resource/sign_out
   # def destroy
@@ -24,4 +28,8 @@ class Users::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  private
+  def set_browsing_id
+    cookies[:browsing_id] = current_user.id
+  end
 end

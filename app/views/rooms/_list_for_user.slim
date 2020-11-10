@@ -14,7 +14,7 @@ table.table
       - my_rooms.each do |room|
         tr
           th
-            = link_to "#{room.name}", room_path(room)
+            = link_to "#{room.name}", room_path(room), "data-turbolinks": false
           th
             = room.host.name
           th

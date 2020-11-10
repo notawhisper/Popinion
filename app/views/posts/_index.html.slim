@@ -2,18 +2,19 @@
 / （ローカル変数を用いるとpdfダウンロード時に値がnilとなり、エラーが出る）
 
 / このままだとpostの数だけクエリが走ってしまう。要改善。
-.overflow-auto.border style="max-height: 80vh;"
-  - @room.posts.each do |post|
-    .card
-      .card-header.py-1
-        .row
-          - if @room.distinguish_speaker_true?
-            .col-4
-              = "Code: #{post.user.current_code_number(@room)}"
-            .col-8.text-right.small
-              = l post.created_at, format: :post
-          - else
-            .col-12.text-left.small
-              = l post.created_at, format: :post
-      .card-body.py-2.text-monospace
-        = post.content
+
+- @room.posts.each do |post|
+  .card
+    .card-header.py-1
+      .row
+        - if @room.distinguish_speaker_true?
+          .col-4
+            = "Code: #{post.user.current_code_number(@room)}"
+          .col-8.text-right.small
+            = l post.created_at, format: :post
+        - else
+          .col-12.text-left.small
+            = l post.created_at, format: :post
+    .card-body.py-2.text-monospace
+      = post.content
+

@@ -27,14 +27,17 @@
           .modal-body
             p
               = @room.description
-    - if @room.posts.any?
-      - if @room.let_guests_view_all_true? || current_user == @room.host
-        = render partial: 'posts/index'
-      - else
-        = render partial: 'posts/restricted_index', locals: { restricted_posts: @restricted_posts }
-    - else
-      .alert.alert-info role="alert"
-        = t('.no_post')
+
+    div id="posts" data-room_id="#{@room.id}"
+      #fullIndex.overflow-auto.border style="max-height: 80vh;"
+        - if @room.posts.any?
+          - if @room.let_guests_view_all_true? || current_user == @room.host
+            = render partial: 'posts/index'
+          - else
+            = render partial: 'posts/restricted_index', locals: { restricted_posts: @restricted_posts }
+        - else
+          .alert.alert-info role="alert"
+            = t('.no_post')
 
 
 

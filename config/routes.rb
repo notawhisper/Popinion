@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {  registrations: 'users/registrations',
                                       sessions: 'users/sessions' }
+  mount ActionCable.server => '/cable'
   root "top#index"
   resources :users, only: [:show]
   resources :rooms do
