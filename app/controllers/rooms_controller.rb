@@ -2,6 +2,7 @@ class RoomsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_room, only: [:edit, :update, :show, :destroy, :download, :set_code_numbers]
   before_action :check_download_permission, only: :download
+  before_action :reject_request_from_guest, only: [:edit, :update, :destroy]
 
   def index
   end
